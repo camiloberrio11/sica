@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { ButtonsMenusFlowComponent } from './buttons-menus-flow/buttons-menus-flow.component';
 import { IonicModule } from '@ionic/angular';
-
-
+import { FormStepsComponent } from './form-steps/form-steps.component';
 
 @NgModule({
-  declarations: [HeaderComponent, ButtonsMenusFlowComponent],
-  imports: [
-    CommonModule,
-    IonicModule
+  declarations: [
+    HeaderComponent,
+    ButtonsMenusFlowComponent,
+    FormStepsComponent,
   ],
-  exports:[HeaderComponent, ButtonsMenusFlowComponent]
+  imports: [CommonModule, IonicModule],
+  exports: [HeaderComponent, ButtonsMenusFlowComponent, FormStepsComponent],
 })
-export class SharedModule { }
+export class SharedModule {}

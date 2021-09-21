@@ -1,0 +1,63 @@
+.ownequipment__register {
+  height: 100%;
+  width: 100%;
+  &__content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    &__barcode {
+      width: 30px;
+      height: 20px;
+      position: absolute;
+      top: 185px;
+      left: 35px;
+    }
+    input {
+      width: 85%;
+      border: none;
+      border-bottom: 1px solid #bababa;
+      margin: 0 auto;
+      margin-top: 70px;
+      text-align: center;
+    }
+
+    &__upload {
+      height: 340px;
+      margin-top: 60px;
+      display: flex;
+      padding: 15px;
+      justify-content: center;
+      img {
+        margin-bottom: 5px;
+      }
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        border: 1px solid #bababa;
+        background-color: transparent;
+        color: #bababa;
+      }
+    }
+
+  }
+  &__two {
+
+  }
+  &__next {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    height: 45px;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+  }
+}
+
+

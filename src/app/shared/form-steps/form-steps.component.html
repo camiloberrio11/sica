@@ -1,0 +1,5 @@
+<div class="circlesbox">
+  <div class="circle"  *ngFor="let circle of listItems" [ngClass]="circle?.status ? 'full': 'null'">
+    <p>{{ circle?.title }}</p>
+  </div>
+</div>
