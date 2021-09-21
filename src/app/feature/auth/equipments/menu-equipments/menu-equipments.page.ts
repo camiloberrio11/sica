@@ -20,7 +20,7 @@ export class MenuEquipmentsPage implements OnInit {
     {
       title: 'Equipo alquilado',
       srcImg: 'assets/img/equipo-alquilado.svg',
-      routePath: '/main-auth/rented-equipment-main',
+      routePath: '/rented-equipment',
     },
     {
       title: 'Equipo propio',

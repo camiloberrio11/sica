@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'own-equipment',
     loadChildren: () => import('./feature/auth/equipments/own-equipment/own-equipment.module').then( m => m.OwnEquipmentPageModule)
   },
+  {
+    path: 'rented-equipment',
+    loadChildren: () => import('./feature/auth/equipments/rented-equipment/rented-equipment.module').then( m => m.RentedEquipmentPageModule)
+  },
 ];
 
 @NgModule({

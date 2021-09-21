@@ -1,0 +1,14 @@
+<app-header [title]="'Equipo alquilado'"></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="rentedequipment">
+    <h4 class="rentedequipment__title">Equipo Alquilado</h4>
+    <div class="rentedequipment__actions" *ngFor="let item of listOptions">
+      <app-buttons-menus-flow
+        [title]="item?.title"
+        [srcImg]="item?.srcImg"
+        [routePath]="item?.routePath"
+      ></app-buttons-menus-flow>
+    </div>
+  </div>
+</ion-content>
