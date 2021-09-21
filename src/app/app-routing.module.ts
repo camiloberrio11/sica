@@ -4,13 +4,21 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  }
+    path: 'login',
+    loadChildren: () => import('./feature/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'select-construction',
+    loadChildren: () => import('./feature/auth/select-construction/select-construction.module').then( m => m.SelectConstructionPageModule)
+  },
+  {
+    path: 'select-flow',
+    loadChildren: () => import('./feature/auth/select-flow/select-flow.module').then( m => m.SelectFlowPageModule)
+  },
 ];
 
 @NgModule({

@@ -74,7 +74,17 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+    // Variables SICA
+    --primary-color: #4e909b;
+    --secondary-color: #a2cfeb;
+    --tertiary-color: #f1f8f8;
+    --gray-text: #a8a8a8;
+    --gray-shadow: #dfdfdf;
 }
+
+
+
 
 @media (prefers-color-scheme: dark) {
   /*
