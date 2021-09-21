@@ -1,0 +1,14 @@
+<app-header [title]="'Equipos'"></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="equipmentmenu">
+    <h4 class="equipmentmenu__title">Equipos</h4>
+    <div class="equipmentmenu__actions" *ngFor="let item of listOptions">
+      <app-buttons-menus-flow
+        [title]="item?.title"
+        [srcImg]="item?.srcImg"
+        [routePath]="item?.routePath"
+      ></app-buttons-menus-flow>
+    </div>
+  </div>
+</ion-content>

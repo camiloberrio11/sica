@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'select-flow',
     loadChildren: () => import('./feature/auth/select-flow/select-flow.module').then( m => m.SelectFlowPageModule)
   },
+  {
+    path: 'menu-equipments',
+    loadChildren: () => import('./feature/auth/equipments/menu-equipments/menu-equipments.module').then( m => m.MenuEquipmentsPageModule)
+  },
 ];
 
 @NgModule({

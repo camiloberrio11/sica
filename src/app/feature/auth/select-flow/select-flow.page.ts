@@ -18,7 +18,7 @@ export class SelectFlowPage implements OnInit {
   }
 
   selectEquipment() {
-    this.router.navigate(['/main-auth/equipments-main']);
+    this.router.navigate(['/menu-equipments']);
   }
 
 }
