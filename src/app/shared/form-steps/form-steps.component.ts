@@ -11,4 +11,8 @@ export class FormStepsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  clickFormStep() {
+    console.log('Clicked in step');
+  }
 }

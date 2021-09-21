@@ -1,5 +1,5 @@
 <div class="circlesbox">
-  <div class="circle"  *ngFor="let circle of listItems" [ngClass]="circle?.status ? 'full': 'null'">
+  <button class="circle"  *ngFor="let circle of listItems" [ngClass]="circle?.status ? 'full': 'null'"  (click)="clickFormStep()">
     <p>{{ circle?.title }}</p>
-  </div>
+  </button>
 </div>

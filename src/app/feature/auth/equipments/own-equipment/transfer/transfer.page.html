@@ -1,9 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>transfer</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'Luna del mar'"></app-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" class="transfer">
+  <h4 class="transfer__title">Traslado</h4>
 
+  <div class="transfer__codebar">
+    <img src="../../../../../../assets/img/barcode.png" alt="codebar-icon">
+    <input type="text" placeholder="Ingresar código del equipo">
+  </div>
+  <div class="transfer__actions" *ngFor="let item of listOptions">
+    <app-buttons-menus-flow
+      [title]="item?.title"
+      [srcImg]="item?.srcImg"
+      [routePath]="item?.routePath"
+    ></app-buttons-menus-flow>
+  </div>
 </ion-content>
