@@ -1,0 +1,15 @@
+<app-header [title]="'Equipo propio'"></app-header>
+
+<ion-content>
+  <div class="ownequipment">
+    <h4 class="ownequipment__title">Equipo propio</h4>
+    <div class="ownequipment__actions" *ngFor="let item of listOptions">
+      <app-buttons-menus-flow
+        [title]="item?.title"
+        [srcImg]="item?.srcImg"
+        [routePath]="item?.routePath"
+      ></app-buttons-menus-flow>
+    </div>
+  </div>
+
+</ion-content>

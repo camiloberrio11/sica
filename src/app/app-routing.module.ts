@@ -23,6 +23,14 @@ const routes: Routes = [
     path: 'menu-equipments',
     loadChildren: () => import('./feature/auth/equipments/menu-equipments/menu-equipments.module').then( m => m.MenuEquipmentsPageModule)
   },
+  {
+    path: 'loan-equipment',
+    loadChildren: () => import('./feature/auth/equipments/loan-equipment/loan-equipment.module').then( m => m.LoanEquipmentPageModule)
+  },
+  {
+    path: 'own-equipment',
+    loadChildren: () => import('./feature/auth/equipments/own-equipment/own-equipment.module').then( m => m.OwnEquipmentPageModule)
+  },
 ];
 
 @NgModule({

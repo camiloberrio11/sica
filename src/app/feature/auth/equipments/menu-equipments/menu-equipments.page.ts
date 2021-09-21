@@ -10,7 +10,7 @@ export class MenuEquipmentsPage implements OnInit {
     {
       title: 'Préstamo',
       srcImg: 'assets/img/prestamo-logo.svg',
-      routePath: '/main-auth/loan-equipment-main',
+      routePath: '/loan-equipment',
     },
     {
       title: 'Mantenimiento',
@@ -25,7 +25,7 @@ export class MenuEquipmentsPage implements OnInit {
     {
       title: 'Equipo propio',
       srcImg: 'assets/img/equipopropio.svg',
-      routePath: '/main-auth/own-equipment-main',
+      routePath: '/own-equipment',
     },
     {
       title: 'Inventario',
