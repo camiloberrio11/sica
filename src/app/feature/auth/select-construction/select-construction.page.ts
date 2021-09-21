@@ -20,6 +20,6 @@ export class SelectConstructionPage implements OnInit {
   }
 
   changeConstruction(event: any) {
-    this.router.navigate(['/main-auth/select-flow']);
+    this.router.navigate(['/select-flow']);
   }
 }

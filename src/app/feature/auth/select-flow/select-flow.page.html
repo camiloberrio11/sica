@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>select-flow</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'Seleccionar accion'"></app-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <div class="selectflow">
+    <div class="selectflow__content">
+      <button class="selectflow__content__action" (click)="selectMaterials()">
+        <img src="assets/img/materiales.svg" alt="material-flow" />
+      </button>
+      <p class="selectflow__content__description">Materiales</p>
+    </div>
+    <div class="selectflow__content">
+      <button class="selectflow__content__action" (click)="selectEquipment()">
+        <img src="assets/img/equipos2.svg" alt="device-teams" />
+        <img src="assets/img/equipos.svg" alt="device-teams" />
+      </button>
+      <p class="selectflow__content__description" >Equipos</p>
+    </div>
+  </div>
 
 </ion-content>

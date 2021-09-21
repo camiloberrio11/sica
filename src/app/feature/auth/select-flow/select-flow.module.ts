@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SelectFlowPageRoutingModule } from './select-flow-routing.module';
 
 import { SelectFlowPage } from './select-flow.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SelectFlowPageRoutingModule
+    SelectFlowPageRoutingModule,
+    SharedModule
   ],
   declarations: [SelectFlowPage]
 })

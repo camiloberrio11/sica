@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-select-flow',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectFlowPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  selectMaterials() {
+    this.router.navigate(['/main-auth/materials-main']);
+  }
+
+  selectEquipment() {
+    this.router.navigate(['/main-auth/equipments-main']);
   }
 
 }
