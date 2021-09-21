@@ -35,6 +35,14 @@ const routes: Routes = [
     path: 'rented-equipment',
     loadChildren: () => import('./feature/auth/equipments/rented-equipment/rented-equipment.module').then( m => m.RentedEquipmentPageModule)
   },
+  {
+    path: 'inventory-equipment',
+    loadChildren: () => import('./feature/auth/equipments/inventory-equipment/inventory-equipment.module').then( m => m.InventoryEquipmentPageModule)
+  },
+  {
+    path: 'maintenance-equipment',
+    loadChildren: () => import('./feature/auth/equipments/maintenance-equipment/maintenance-equipment.module').then( m => m.MaintenanceEquipmentPageModule)
+  },
 ];
 
 @NgModule({

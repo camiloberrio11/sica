@@ -15,7 +15,7 @@ export class MenuEquipmentsPage implements OnInit {
     {
       title: 'Mantenimiento',
       srcImg: 'assets/img/materiales.svg',
-      routePath: '',
+      routePath: '/maintenance-equipment',
     },
     {
       title: 'Equipo alquilado',
@@ -30,7 +30,7 @@ export class MenuEquipmentsPage implements OnInit {
     {
       title: 'Inventario',
       srcImg: 'assets/img/inventario.svg',
-      routePath: '',
+      routePath: '/inventory-equipment',
     },
   ];
   constructor() {}
