@@ -10,17 +10,17 @@ export class LoanEquipmentPage implements OnInit {
     {
       title: 'Entrega',
       srcImg: 'assets/img/prestamo-logo.svg',
-      routePath: ''
+      routePath: 'loan-equipment/delivery'
     },
     {
       title: 'Devolución',
       srcImg: 'assets/img/materiales.svg',
-      routePath: ''
+      routePath: 'loan-equipment/return'
     },
     {
       title: 'Informe',
       srcImg: 'assets/img/equipo-alquilado.svg',
-      routePath: ''
+      routePath: 'loan-equipment/report'
     },
   ];;
 

@@ -41,6 +41,18 @@ const routes: Routes = [
       ).then((m) => m.LoanEquipmentPageModule),
   },
   {
+    path: 'loan-equipment/delivery',
+    loadChildren: () => import('./feature/auth/equipments/loan-equipment/delivery/delivery.module').then( m => m.DeliveryPageModule)
+  },
+  {
+    path: 'loan-equipment/return',
+    loadChildren: () => import('./feature/auth/equipments/loan-equipment/return/return.module').then( m => m.ReturnPageModule)
+  },
+  {
+    path: 'loan-equipment/report',
+    loadChildren: () => import('./feature/auth/equipments/loan-equipment/report/report.module').then( m => m.ReportPageModule)
+  },
+  {
     path: 'own-equipment',
     loadChildren: () =>
       import(
