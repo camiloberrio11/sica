@@ -42,15 +42,24 @@ const routes: Routes = [
   },
   {
     path: 'loan-equipment/delivery',
-    loadChildren: () => import('./feature/auth/equipments/loan-equipment/delivery/delivery.module').then( m => m.DeliveryPageModule)
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/loan-equipment/delivery/delivery.module'
+      ).then((m) => m.DeliveryPageModule),
   },
   {
     path: 'loan-equipment/return',
-    loadChildren: () => import('./feature/auth/equipments/loan-equipment/return/return.module').then( m => m.ReturnPageModule)
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/loan-equipment/return/return.module'
+      ).then((m) => m.ReturnPageModule),
   },
   {
     path: 'loan-equipment/report',
-    loadChildren: () => import('./feature/auth/equipments/loan-equipment/report/report.module').then( m => m.ReportPageModule)
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/loan-equipment/report/report.module'
+      ).then((m) => m.ReportPageModule),
   },
   {
     path: 'own-equipment',
@@ -65,6 +74,34 @@ const routes: Routes = [
       import(
         './feature/auth/equipments/rented-equipment/rented-equipment.module'
       ).then((m) => m.RentedEquipmentPageModule),
+  },
+  {
+    path: 'rented-equipment/entry',
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/rented-equipment/entry/entry.module'
+      ).then((m) => m.EntryPageModule),
+  },
+  {
+    path: 'rented-equipment/return',
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/rented-equipment/return/return.module'
+      ).then((m) => m.ReturnPageModule),
+  },
+  {
+    path: 'rented-equipment/pre-settlement',
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/rented-equipment/pre-settlement/pre-settlement.module'
+      ).then((m) => m.PreSettlementPageModule),
+  },
+  {
+    path: 'rented-equipment/reports',
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/rented-equipment/reports/reports.module'
+      ).then((m) => m.ReportsPageModule),
   },
   {
     path: 'inventory-equipment',
@@ -82,25 +119,40 @@ const routes: Routes = [
   },
   {
     path: 'own-equipment-main/register',
-    loadChildren: () => import('./feature/auth/equipments/own-equipment/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/own-equipment/register/register.module'
+      ).then((m) => m.RegisterPageModule),
   },
   {
     path: 'own-equipment-main/history',
-    loadChildren: () => import('./feature/auth/equipments/own-equipment/history/history.module').then( m => m.HistoryPageModule)
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/own-equipment/history/history.module'
+      ).then((m) => m.HistoryPageModule),
   },
   {
     path: 'own-equipment-main/transfer',
-    loadChildren: () => import('./feature/auth/equipments/own-equipment/transfer/transfer.module').then( m => m.TransferPageModule)
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/own-equipment/transfer/transfer.module'
+      ).then((m) => m.TransferPageModule),
   },
   {
     path: 'own-equipment-main/reports',
-    loadChildren: () => import('./feature/auth/equipments/own-equipment/reports/reports.module').then( m => m.ReportsPageModule)
-  }
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/own-equipment/reports/reports.module'
+      ).then((m) => m.ReportsPageModule),
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, useHash: true }),
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+      useHash: true,
+    }),
   ],
   exports: [RouterModule],
 })
