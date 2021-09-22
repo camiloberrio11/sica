@@ -1,4 +1,50 @@
-<app-header [title]="'Prestamo de equipo'"></app-header>
-<ion-content [fullscreen]="true">
+<app-header [title]="'Mantenimiento'"></app-header>
+<ion-content [fullscreen]="true" class="maintenance">
+  <app-form-steps [listItems]="listItemsForm"></app-form-steps>
 
+  <div class="maintenance__form" *ngIf="indexCurrentForm === 0">
+    <div class="maintenance__form__boxinput">
+      <p>Escanear</p>
+      <input type="text" placeholder="Seleccione Equipo" />
+    </div>
+    <div class="maintenance__form__boxinput">
+      <p>Equipo</p>
+      <input type="text" placeholder="Seleccione Equipo" />
+    </div>
+    <div class="maintenance__form__boxinput">
+      <p>Marca</p>
+      <input type="text" placeholder="Seleccione Equipo" />
+    </div>
+    <div class="maintenance__form__boxinput">
+      <p>Referencia</p>
+      <input type="text" placeholder="Seleccione Equipo" />
+    </div>
+    <div class="maintenance__form__boxinput">
+      <p>Serie</p>
+      <input type="text" placeholder="Seleccione Equipo" />
+    </div>
+  </div>
+
+  <!-- form 2 -->
+  <div class="maintenance__form" *ngIf="indexCurrentForm === 1">
+    <div class="maintenance__form__boxinput">
+      <p>Proveedor</p>
+      <input type="text" placeholder="Seleccione proveedor" />
+    </div>
+    <div class="maintenance__form__boxinput">
+      <p>Garantía</p>
+      <input type="text" placeholder="Garantia (meses)" />
+    </div>
+    <div class="maintenance__form__boxinput">
+      <p>Descontar A</p>
+      <input type="text" placeholder="Nombre" />
+    </div>
+    <div class="maintenance__form__boxinput">
+      <p>Observaciones</p>
+      <input type="text" placeholder="Digite observaciones" />
+    </div>
+  </div>
+
+  <button (click)="handleNext()">{{labelBtn}}</button>
+  <button *ngIf="existNext">Enviar Email</button>
 </ion-content>
