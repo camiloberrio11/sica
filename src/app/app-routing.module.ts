@@ -139,6 +139,20 @@ const routes: Routes = [
       ).then((m) => m.TransferPageModule),
   },
   {
+    path: 'own-equipment-main/transfer/reception',
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/own-equipment/transfer/reception/reception.module'
+      ).then((m) => m.ReceptionPageModule),
+  },
+  {
+    path: 'own-equipment-main/transfer/shipping',
+    loadChildren: () =>
+      import(
+        './feature/auth/equipments/own-equipment/transfer/shipping/shipping.module'
+      ).then((m) => m.ShippingPageModule),
+  },
+  {
     path: 'own-equipment-main/reports',
     loadChildren: () =>
       import(
