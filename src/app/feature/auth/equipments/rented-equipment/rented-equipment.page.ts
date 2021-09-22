@@ -10,22 +10,22 @@ export class RentedEquipmentPage implements OnInit {
     {
       title: 'Ingreso',
       srcImg: 'assets/img/prestamo-logo.svg',
-      routePath: 'rented-equipment/entry',
+      routePath: 'auth/rented-equipment/entry',
     },
     {
       title: 'Devolución',
       srcImg: 'assets/img/materiales.svg',
-      routePath: 'rented-equipment/return',
+      routePath: 'auth/rented-equipment/return',
     },
     {
       title: 'Preliquidación',
       srcImg: 'assets/img/equipo-alquilado.svg',
-      routePath: 'rented-equipment/pre-settlement',
+      routePath: 'auth/rented-equipment/pre-settlement',
     },
     {
       title: 'Informes',
       srcImg: 'assets/img/equipopropio.svg',
-      routePath: 'rented-equipment/reports',
+      routePath: 'auth/rented-equipment/reports',
     },
   ];
   constructor() {}

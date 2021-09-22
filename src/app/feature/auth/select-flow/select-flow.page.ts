@@ -7,18 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./select-flow.page.scss'],
 })
 export class SelectFlowPage implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   selectMaterials() {
-    this.router.navigate(['/main-auth/materials-main']);
+    this.router.navigate(['/auth/main-auth/materials-main']);
   }
 
   selectEquipment() {
-    this.router.navigate(['/menu-equipments']);
+    this.router.navigate(['/auth/menu-equipments']);
   }
-
 }

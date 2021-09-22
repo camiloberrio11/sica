@@ -10,27 +10,27 @@ export class MenuEquipmentsPage implements OnInit {
     {
       title: 'Préstamo',
       srcImg: 'assets/img/prestamo-logo.svg',
-      routePath: '/loan-equipment',
+      routePath: 'auth//loan-equipment',
     },
     {
       title: 'Mantenimiento',
       srcImg: 'assets/img/materiales.svg',
-      routePath: '/maintenance-equipment',
+      routePath: 'auth//maintenance-equipment',
     },
     {
       title: 'Equipo alquilado',
       srcImg: 'assets/img/equipo-alquilado.svg',
-      routePath: '/rented-equipment',
+      routePath: 'auth//rented-equipment',
     },
     {
       title: 'Equipo propio',
       srcImg: 'assets/img/equipopropio.svg',
-      routePath: '/own-equipment',
+      routePath: 'auth//own-equipment',
     },
     {
       title: 'Inventario',
       srcImg: 'assets/img/inventario.svg',
-      routePath: '/inventory-equipment',
+      routePath: 'auth//inventory-equipment',
     },
   ];
   constructor() {}

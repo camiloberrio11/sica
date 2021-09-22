@@ -10,17 +10,15 @@ export class TransferPage implements OnInit {
     {
       title: 'Recepción',
       srcImg: 'assets/img/puerta.png',
-      routePath: '/own-equipment-main/transfer/reception',
+      routePath: 'auth//own-equipment-main/transfer/reception',
     },
     {
       title: 'Envío',
       srcImg: 'assets/img/carrollave.png',
-      routePath: 'own-equipment-main/transfer/shipping',
+      routePath: 'auth/own-equipment-main/transfer/shipping',
     },
   ];
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

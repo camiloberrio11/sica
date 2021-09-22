@@ -7,19 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./select-construction.page.scss'],
 })
 export class SelectConstructionPage implements OnInit {
-
   listObras = [
     { title: 'Obra Santa Ana', id: 1 },
     { title: 'Obra Santa Colma', id: 2 },
     { title: 'Luna del mar', id: 3 },
     { title: 'Obra grande', id: 4 },
   ];
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   changeConstruction(event: any) {
-    this.router.navigate(['/select-flow']);
+    this.router.navigate(['/auth/select-flow']);
   }
 }

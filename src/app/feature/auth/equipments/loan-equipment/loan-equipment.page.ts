@@ -10,23 +10,21 @@ export class LoanEquipmentPage implements OnInit {
     {
       title: 'Entrega',
       srcImg: 'assets/img/prestamo-logo.svg',
-      routePath: 'loan-equipment/delivery'
+      routePath: 'auth/loan-equipment/delivery',
     },
     {
       title: 'Devolución',
       srcImg: 'assets/img/materiales.svg',
-      routePath: 'loan-equipment/return'
+      routePath: 'auth/loan-equipment/return',
     },
     {
       title: 'Informe',
       srcImg: 'assets/img/equipo-alquilado.svg',
-      routePath: 'loan-equipment/report'
+      routePath: 'auth/loan-equipment/report',
     },
-  ];;
+  ];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

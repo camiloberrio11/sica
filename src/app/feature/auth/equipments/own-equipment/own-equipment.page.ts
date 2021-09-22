@@ -10,22 +10,22 @@ export class OwnEquipmentPage implements OnInit {
     {
       title: 'Registro',
       srcImg: 'assets/img/prestamo-logo.svg',
-      routePath: '/own-equipment-main/register',
+      routePath: 'auth//own-equipment-main/register',
     },
     {
       title: 'Traslado',
       srcImg: 'assets/img/materiales.svg',
-      routePath: '/own-equipment-main/transfer',
+      routePath: 'auth//own-equipment-main/transfer',
     },
     {
       title: 'Hoja de vida',
       srcImg: 'assets/img/equipo-alquilado.svg',
-      routePath: '/own-equipment-main/history',
+      routePath: 'auth//own-equipment-main/history',
     },
     {
       title: 'Informes',
       srcImg: 'assets/img/equipopropio.svg',
-      routePath: '/own-equipment-main/reports',
+      routePath: 'auth//own-equipment-main/reports',
     },
   ];
 
