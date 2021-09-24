@@ -1,9 +1,44 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>delivery</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'Entrega de equipos'"></app-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" class="delivery">
+  <app-form-steps [listItems]="listItemsForm"></app-form-steps>
+  <div class="delivery__form" *ngIf="indexCurrentForm === 0">
+    <div class="delivery__form__boxinput">
+      <p>Escanear</p>
+      <input type="text" placeholder="Seleccione Equipo" />
+      <img class="delivery__form__boxinput__icon" src="../../../../../../assets/img/barcode.png" alt="barcode-icon">
+    </div>
+    <div class="delivery__description">
+      <p>Verificar datos del equipo</p>
+      <p>Boch</p>
+      <p>Taladro</p>
+      <p>DC345</p>
+      <p>Propio</p>
+      <button>OK</button>
+    </div>
+  </div>
 
+  <!-- form 1 -->
+  <div class="delivery__form" *ngIf="indexCurrentForm === 1">
+    <div class="delivery__form__boxinput">
+      <p>Escanear</p>
+      <input type="text" placeholder="Seleccione Equipo" />
+      <img class="delivery__form__boxinput__icon" src="../../../../../../assets/img/barcode.png" alt="barcode-icon">
+    </div>
+    <div class="delivery__form__boxinput">
+      <p>Escanear</p>
+      <input type="text" placeholder="Seleccione Equipo" />
+    </div>
+
+    <div class="delivery__form__boxlineinput">
+      <input type="text" placeholder="Ingresa aca">
+    </div>
+
+    <div class="delivery__form__boxlineinput">
+      <input type="text" placeholder="Ingresa aca">
+    </div>
+
+  </div>
+
+  <button class="delivery__btnform" (click)="handleNext()">{{labelBtn}}</button>
 </ion-content>
