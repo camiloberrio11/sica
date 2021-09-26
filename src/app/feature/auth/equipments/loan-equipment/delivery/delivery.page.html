@@ -6,7 +6,11 @@
     <div class="delivery__form__boxinput">
       <p>Escanear</p>
       <input type="text" placeholder="Seleccione Equipo" />
-      <img class="delivery__form__boxinput__icon" src="../../../../../../assets/img/barcode.png" alt="barcode-icon">
+      <img
+        class="delivery__form__boxinput__icon"
+        src="../../../../../../assets/img/barcode.png"
+        alt="barcode-icon"
+      />
     </div>
     <div class="delivery__description">
       <p>Verificar datos del equipo</p>
@@ -21,23 +25,39 @@
   <!-- form 1 -->
   <div class="delivery__form" *ngIf="indexCurrentForm === 1">
     <div class="delivery__form__boxinput">
-      <p>Escanear</p>
+      <p>Entregado A</p>
       <input type="text" placeholder="Seleccione Equipo" />
-      <img class="delivery__form__boxinput__icon" src="../../../../../../assets/img/barcode.png" alt="barcode-icon">
+      <img
+        class="delivery__form__boxinput__icon"
+        src="../../../../../../assets/img/barcode.png"
+        alt="barcode-icon"
+      />
     </div>
     <div class="delivery__form__boxinput">
-      <p>Escanear</p>
+      <p>Contratista</p>
       <input type="text" placeholder="Seleccione Equipo" />
     </div>
 
-    <div class="delivery__form__boxlineinput">
-      <input type="text" placeholder="Ingresa aca">
+    <div class="delivery__form__fieldsnum">
+      <div class="delivery__form__fieldsnum__field">
+        <label>Cantidad</label>
+        <input type="text" />
+      </div>
+
+      <div class="delivery__form__fieldsnum__field">
+        <label>Días</label>
+        <input type="text" />
+      </div>
+
     </div>
 
     <div class="delivery__form__boxlineinput">
-      <input type="text" placeholder="Ingresa aca">
+      <input type="text" placeholder="Actividad" />
     </div>
 
+    <div class="delivery__form__boxlineinput">
+      <input type="text" placeholder="Observacion" />
+    </div>
   </div>
 
   <button class="delivery__btnform" (click)="handleNext()">{{labelBtn}}</button>

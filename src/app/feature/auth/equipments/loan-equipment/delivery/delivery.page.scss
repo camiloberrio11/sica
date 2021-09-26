@@ -37,6 +37,29 @@
         bottom: 10px;
       }
     }
+    &__fieldsnum {
+      position: relative;
+      width: 100%;
+      margin-top: 35px;
+      margin-bottom: 35px;
+      &__field {
+        float: left;
+        display: flex;
+        justify-content: center;
+        width: 50%;
+        label {
+          position: absolute;
+          top: -20px;
+          color: var(--primary-color);
+          font-weight: bold;
+        }
+        input {
+          height: 60px;
+          width: 40%;
+          border: 1px solid var(--primary-color);
+        }
+      }
+    }
     &__boxlineinput {
       width: 90%;
       height: 50px;
@@ -51,7 +74,17 @@
     }
   }
   &__description {
-    border: 1px solid red;
+    text-align: center;
+    width: 75%;
+    height: 50%;
+    box-shadow: 1px 1px 10px 1px var(--primary-color);
+    margin-top: 10px;
+    button {
+      font-weight: bold;
+      color: var(--primary-color);
+      background-color: transparent;
+      font-size: 14px;
+    }
   }
   &__btnform {
     width: 90%;
