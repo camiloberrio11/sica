@@ -49,10 +49,64 @@
         text-align: center;
       }
     }
+
+    &__fieldsnum {
+      position: relative;
+      width: 100%;
+      margin-top: 35px;
+      margin-bottom: 35px;
+      &__field {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        label {
+          position: absolute;
+          top: -20px;
+          color: var(--primary-color);
+          font-weight: bold;
+        }
+        input {
+          height: 60px;
+          width: 20%;
+          border: 1px solid var(--primary-color);
+        }
+      }
+    }
+
+    &__boxcheck {
+      width: 100%;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      &__check {
+        width: 50%;
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        input {
+margin-right: 10px;
+        }
+        label {
+          color: var(--primary-color);
+          font-weight: bold;
+        }
+      }
+    }
   }
   &__description {
-    border: 1px solid red;
+    text-align: center;
+    width: 75%;
+    height: 50%;
+    box-shadow: 1px 1px 10px 1px var(--primary-color);
+    margin-top: 10px;
+    button {
+      font-weight: bold;
+      color: var(--primary-color);
+      background-color: transparent;
+      font-size: 14px;
+    }
   }
+
   &__btnform {
     width: 90%;
     background-color: var(--primary-color);
