@@ -1,5 +1,64 @@
 <app-header [title]="'Devolución'"></app-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" class="return">
+  <div class="return__forms">
+    <div class="return__forms__boxinput">
+      <p>Proveedor</p>
+      <input type="text" placeholder="Imgrese proveedor" />
+    </div>
+    <div class="return__forms__boxinput">
+      <p>N. Dev</p>
+      <input type="text" placeholder="Digite remisión" />
+    </div>
+    <p class="return__forms__equipment">Ingresa equipo</p>
+    <div class="return__forms__boxinput">
+      <p>Escanear</p>
+      <input type="text" placeholder="Codigo interno" />
+      <img
+        class="return__forms__boxinput__icon"
+        src="assets/img/barcode.png"
+        alt="barcode-icon"
+      />
+    </div>
 
+    <div class="return__forms__boxinput">
+      <p>Fecha</p>
+      <input type="text" placeholder="Fecha de anuncio" />
+      <img
+        class="return__forms__boxinput__icon"
+        src="assets/img/Calendar.svg"
+        alt="barcode-icon"
+      />
+    </div>
+    <div class="return__forms__boxinput">
+      <p>Cantidad</p>
+      <input type="text" placeholder="Ingrese cantidad" />
+    </div>
+
+    <div class="return__forms__fieldsnum">
+      <div class="return__forms__fieldsnum__field">
+        <label>Cantidad disponible</label>
+        <input type="text" />
+      </div>
+
+      <div class="return__forms__fieldsnum__field">
+        <label>Cantidad devolver</label>
+        <input type="text" />
+      </div>
+    </div>
+
+    <div class="return__forms__tokenbox">
+      <p>Acerque el token para autorizar el translado</p>
+      <img src="assets/img/nfc.svg" alt="nfc-icon" />
+
+    </div>
+    <p></p>
+
+    <!-- <div class="return__forms__tokenbox">
+      <img src="assets/img/nfc.svg" alt="nfc-icon" />
+      <p>Acerque el token para autorizar el translado</p>
+    </div> -->
+  </div>
+  <button class="return__next">Guardar</button>
+  <button class="return__next">Enviar Email</button>
 </ion-content>
