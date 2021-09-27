@@ -8,7 +8,7 @@ import { FormStep } from 'src/app/core/models/Formstep';
 })
 export class ShippingPage implements OnInit {
   itemsForm: FormStep[] = [
-    { title: 'Fotos', status: true },
+    { title: 'Equipo', status: true },
     { title: 'Destino', status: false },
   ];
   listDestiny = [{id: 1, title: 'Destino 1'}, {id: 2, title: 'Destino 2'}];
