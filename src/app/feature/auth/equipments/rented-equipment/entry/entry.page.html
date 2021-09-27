@@ -1,5 +1,49 @@
 <app-header [title]="'Ingreso'"></app-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" class="entry">
+  <div class="entry__forms">
+    <div class="entry__forms__boxinput">
+      <p>Proveedor</p>
+      <input type="text" placeholder="Imgrese proveedor" />
+    </div>
+    <div class="entry__forms__boxinput">
+      <p>Remisión</p>
+      <input type="text" placeholder="Digite remisión" />
+    </div>
+    <p class="entry__forms__equipment">Ingresa equipo</p>
+    <div class="entry__forms__boxinput">
+      <p>Escanear</p>
+      <input type="text" placeholder="Codigo interno" />
+      <img
+        class="entry__forms__boxinput__icon"
+        src="assets/img/barcode.png"
+        alt="barcode-icon"
+      />
+    </div>
 
+    <div class="entry__forms__boxinput">
+      <p>Equipo</p>
+      <input type="text" placeholder="Seleccione Equipo" />
+    </div>
+    <div class="entry__forms__boxinput">
+      <p>Cantidad</p>
+      <input type="text" placeholder="Ingrese cantidad" />
+    </div>
+    <div class="entry__forms__boxinput">
+      <p>Identificador</p>
+      <input type="text" placeholder="Ingrese identificador" />
+    </div>
+    <div class="entry__forms__boxinput">
+      <p>Valor</p>
+      <input type="text" placeholder="Ingrese valor alquiler" />
+    </div>
+  </div>
+
+  <div class="entry__forms__add">
+    <button>+</button>
+    <p>Agregar equipo</p>
+  </div>
+
+  <button class="entry__next">Guardar</button>
+  <button class="entry__next">Enviar Email</button>
 </ion-content>
