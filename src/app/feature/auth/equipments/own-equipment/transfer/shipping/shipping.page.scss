@@ -1,0 +1,107 @@
+.shipping {
+  height: 100%;
+  width: 100%;
+
+  &__forms {
+    &__one {
+      height: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &__boxinput {
+        width: 90%;
+        height: 50px;
+        margin-bottom: 10px;
+        position: relative;
+        input {
+          padding-left: 15px;
+          width: 70%;
+          float: left;
+          height: 100%;
+          border: 1px solid var(--secondary-color);
+        }
+        p {
+          width: 30%;
+          margin: 0;
+          float: left;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: var(--primary-color);
+          color: white;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: bold;
+        }
+        &__icon {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+        }
+      }
+    }
+    &__two {
+      &__select {
+        width: 95%;
+        margin: 0 auto;
+        &__label {
+          border: 1px solid var(--primary-color);
+        }
+      }
+      &__date {
+        width: 100%;
+        position: relative;
+        margin-top: 35px;
+        display: flex;
+        justify-content: center;
+        input {
+          border: none;
+          border-bottom: 1px solid var(--primary-color);
+          color: var(--primary-color);
+          font-weight: bold;
+          width: 90%;
+          text-align: center;
+          font-size: 14px;
+          &::placeholder {
+          color: var(--primary-color);
+
+          }
+        }
+        img {
+          height: 20px;
+          width: 30px;
+          position: absolute;
+          right: 30px;
+          top: -5px;        }
+      }
+      &__tokenbox {
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        p {
+          text-align: center;
+          color: var(--quartary-color);
+          font-weight: bold;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  &__next {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    height: 45px;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+  }
+}
