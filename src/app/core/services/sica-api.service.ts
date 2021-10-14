@@ -5,7 +5,7 @@ import { ConstructionService } from '../models/Construction';
 import { environment } from 'src/environments/environment';
 import { ToolResponseService } from '../models/Tool';
 import { UserResponseService } from '../models/User';
-import { BodyCreateLoan } from '../models/Loan';
+import { BodyCreateLoan, BodyUpdateLoan } from '../models/Loan';
 
 @Injectable({
   providedIn: 'root',
@@ -31,10 +31,20 @@ export class SicaApiService {
     );
   }
 
-  createLoan(body: BodyCreateLoan): Observable<any> {
-    return this.http.post(
-      `${environment.urlApi}/api/6151e8904cfcd6faa44d846f
-/tool/loan`,
+  createLoan(body: BodyCreateLoan): Observable<{ id: string }> {
+    return this.http.post<{ id: string }>(
+      `${environment.urlApi}/api/6151e8904cfcd6faa44d846f/tool/loan`,
+      body
+    );
+  }
+
+  returnLoan(
+    body: BodyUpdateLoan,
+    idLoan: string,
+    idConstruction: string
+  ): Observable<any> {
+    return this.http.patch(
+      `${environment.urlApi}/api/${idConstruction}/tool/loan/${idLoan}/return-tool`,
       body
     );
   }

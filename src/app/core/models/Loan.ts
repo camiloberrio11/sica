@@ -7,3 +7,20 @@ export interface BodyCreateLoan {
   remark: string;
   tool: string;
 }
+
+export interface BodyUpdateLoan {
+  return: Return;
+}
+
+
+interface Return {
+  deliveredBy: string;
+  receivedBy: string;
+  detail: Detail;
+  remark: string;
+}
+
+interface Detail {
+  status: string;
+  quantity: number;
+}

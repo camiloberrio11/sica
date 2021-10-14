@@ -1,12 +1,19 @@
 <app-header [title]="'Devolcuión de equipos'"></app-header>
 
 <ion-content [fullscreen]="true" class="return">
-  <app-form-steps [listItems]="listItemsForm"></app-form-steps>
+  <app-form-steps
+    [listItems]="listItemsForm"
+    (indexCurrent)="currentForm($event)"
+  ></app-form-steps>
   <div class="return__form" *ngIf="indexCurrentForm === 0">
     <div class="return__form__boxinput">
       <p>Escanear</p>
       <input type="text" placeholder="Seleccione Equipo" />
-      <img class="return__form__boxinput__icon" src="../../../../../../assets/img/barcode.png" alt="barcode-icon">
+      <img
+        class="return__form__boxinput__icon"
+        src="../../../../../../assets/img/barcode.png"
+        alt="barcode-icon"
+      />
     </div>
     <div class="return__description">
       <p>Verificar datos del equipo</p>
@@ -23,7 +30,11 @@
     <div class="return__form__boxinput">
       <p>Escanear</p>
       <input type="text" placeholder="Seleccione Equipo" />
-      <img class="return__form__boxinput__icon" src="../../../../../../assets/img/barcode.png" alt="barcode-icon">
+      <img
+        class="return__form__boxinput__icon"
+        src="../../../../../../assets/img/barcode.png"
+        alt="barcode-icon"
+      />
     </div>
     <div class="return__form__boxinput">
       <p>Escanear</p>
@@ -48,14 +59,14 @@
       </div>
     </div>
 
-
     <div class="return__form__boxlineinput">
-      <input type="text" placeholder="Observaciones">
+      <input type="text" placeholder="Observaciones" />
     </div>
-
   </div>
 
   <button class="return__btnform" (click)="handleNext()">{{labelBtn}}</button>
-  <button class="return__btnform" *ngIf="indexCurrentForm === 1">Enviar Email</button>
-
+  <button class="return__btnform" *ngIf="indexCurrentForm === 1">
+    Enviar Email
+  </button>
+  {{indexCurrentForm}}
 </ion-content>

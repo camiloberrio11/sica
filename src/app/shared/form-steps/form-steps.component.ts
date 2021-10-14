@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormStep } from 'src/app/core/models/Formstep';
 
 @Component({
@@ -8,11 +8,17 @@ import { FormStep } from 'src/app/core/models/Formstep';
 })
 export class FormStepsComponent implements OnInit {
   @Input() listItems: FormStep[];
+  @Output() indexCurrent = new EventEmitter<number>();
   constructor() {}
 
   ngOnInit() {}
 
-  clickFormStep() {
-    console.log('Clicked in step');
+  clickFormStep(index: number) {
+    console.log(index);
+    this.indexCurrent.emit(index)
+  }
+
+
+  sendCurrentIndex(): void {
   }
 }

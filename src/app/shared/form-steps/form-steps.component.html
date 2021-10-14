@@ -1,5 +1,11 @@
 <div class="circlesbox">
-  <button class="circle"  *ngFor="let circle of listItems" [ngClass]="circle?.status ? 'full': 'null'"  (click)="clickFormStep()">
+  <button
+    class="circle"
+    *ngFor="let circle of listItems; index as i;"
+    [ngClass]="circle?.status ? 'full' : 'null'"
+    (click)="clickFormStep(i)"
+
+  >
     <p>{{ circle?.title }}</p>
   </button>
 </div>
