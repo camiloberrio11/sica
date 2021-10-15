@@ -1,4 +1,4 @@
-export interface ConstructionService {
+export interface Construction {
   id: string;
   code: string;
   name: string;

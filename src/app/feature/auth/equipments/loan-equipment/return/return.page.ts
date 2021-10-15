@@ -39,24 +39,11 @@ export class ReturnPage implements OnInit {
       return item;
     });
     this.updateIndex();
-    // Validar cuando entre al ultimo
     const statusFinally = this.formFinally();
     if (statusFinally) {
       this.returnLoan();
       return;
     }
-
-
-
-
-
-
-
-
-
-
-
-
     if (this.existNext ) {
       this.indexCurrentForm = this.indexCurrentForm - 1;
       this.returnLoan();
