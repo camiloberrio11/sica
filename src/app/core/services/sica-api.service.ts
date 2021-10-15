@@ -7,6 +7,7 @@ import { ToolResponseService } from '../models/Tool';
 import { UserResponseService } from '../models/User';
 import { BodyCreateLoan, BodyUpdateLoan } from '../models/Loan';
 import { ConstructionService } from './construction.service';
+import { BodyCreateSupplier, Supplier } from '../models/Suplplier';
 
 @Injectable({
   providedIn: 'root',
@@ -53,5 +54,13 @@ export class SicaApiService {
       `${environment.urlApi}/api/${idConstruction}/tool/loan/${idLoan}/return-tool`,
       body
     );
+  }
+
+  getSupplier(): Observable<Supplier[]> {
+    return this.http.get<Supplier[]>(`${environment.urlApi}/api/supplier`);
+  }
+
+  createSupplier(body: BodyCreateSupplier): Observable<{id: string}> {
+    return this.http.post<{id: string}>(`${environment.production}/api/supplier`, body);
   }
 }
