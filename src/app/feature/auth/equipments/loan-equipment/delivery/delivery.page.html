@@ -3,26 +3,23 @@
 <ion-content [fullscreen]="true" class="delivery">
   <app-form-steps [listItems]="listItemsForm"></app-form-steps>
   <div class="delivery__form" *ngIf="indexCurrentForm === 0">
-    <div class="delivery__form__boxinput">
-      <p>Escanear</p>
-      <input type="text" placeholder="Seleccione Equipo" value="ABC123" />
-      <img
-        class="delivery__form__boxinput__icon"
-        src="../../../../../../assets/img/barcode.png"
-        alt="barcode-icon"
-      />
-    </div>
-    <div class="delivery__description">
-      <p>Verificar datos del equipo</p>
-      <p>{{tool?.trademark?.name}}</p>
-      <p>{{tool?.category?.name}}</p>
-      <p>{{tool?.reference}}</p>
-      <p>{{tool?.serial}}</p>
-      <p>{{tool?.isOwned ? 'Propio' : 'Alquilado'}}</p>
-      <button>OK</button>
-    </div>
+      <div class="delivery__form__boxinput">
+        <p>Escanear</p>
+        <input type="text" placeholder="Seleccione Equipo" value="ABC123" />
+        <button class="delivery__form__boxinput__icon">
+          <img src="assets/img/barcode.png" alt="barcode-icon" />
+        </button>
+      </div>
+      <div class="delivery__description">
+        <p>Verificar datos del equipo</p>
+        <p>{{tool?.trademark?.name}}</p>
+        <p>{{tool?.category?.name}}</p>
+        <p>{{tool?.reference}}</p>
+        <p>{{tool?.serial}}</p>
+        <p>{{tool?.isOwned ? 'Propio' : 'Alquilado'}}</p>
+        <button>OK</button>
+      </div>
   </div>
-
   <!-- form 1 -->
   <div class="delivery__form" *ngIf="indexCurrentForm === 1">
     <div class="delivery__form__boxinput">

@@ -8,6 +8,8 @@ import { UserResponseService } from '../models/User';
 import { BodyCreateLoan, BodyUpdateLoan } from '../models/Loan';
 import { ConstructionService } from './construction.service';
 import { BodyCreateSupplier, Supplier } from '../models/Suplplier';
+import { BodyCreateCategoryTool, CategoryTool } from '../models/CategoryTool';
+import { BodySaveBrandTool, BrandTool } from '../models/BrandTool';
 
 @Injectable({
   providedIn: 'root',
@@ -45,6 +47,11 @@ export class SicaApiService {
     );
   }
 
+  getLoan(): Observable<any> {
+    const idConstruction = this.constructionService.getSelectConstruction?.id;
+    return this.http.get(`${environment?.urlApi}/api/${idConstruction}/tool/loan`);
+  }
+
   returnLoan(
     body: BodyUpdateLoan,
     idLoan: string,
@@ -60,7 +67,29 @@ export class SicaApiService {
     return this.http.get<Supplier[]>(`${environment.urlApi}/api/supplier`);
   }
 
-  createSupplier(body: BodyCreateSupplier): Observable<{id: string}> {
-    return this.http.post<{id: string}>(`${environment.production}/api/supplier`, body);
+  createSupplier(body: BodyCreateSupplier): Observable<{ id: string }> {
+    return this.http.post<{ id: string }>(
+      `${environment.production}/api/supplier`,
+      body
+    );
+  }
+
+  getCategoryTool(): Observable<CategoryTool[]> {
+    return this.http.get<CategoryTool[]>(`${environment?.urlApi}/api/category`);
+  }
+
+  saveCategoryTool(body: BodyCreateCategoryTool): Observable<{ id: string }> {
+    return this.http.post<{ id: string }>(
+      `${environment?.urlApi}/api/category`,
+      body
+    );
+  }
+
+  getBrandsTool(): Observable<BrandTool> {
+    return this.http.get<BrandTool>(`${environment?.urlApi}/api/brand`);
+  }
+
+  saveBrandTool(body: BodySaveBrandTool): Observable<{id: string}> {
+    return this.http.post<{id: string}>(`${environment?.urlApi}/api/brand`, body);
   }
 }

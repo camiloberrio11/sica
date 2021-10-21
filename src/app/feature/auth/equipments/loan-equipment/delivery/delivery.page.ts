@@ -7,6 +7,12 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 import { SicaApiService } from 'src/app/core/services/sica-api.service';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { LoadingController } from '@ionic/angular';
+import { FormControl, FormGroup } from '@angular/forms';
+
+const userTest = {
+  codebar: 'ABC12310'
+};
+const equipmentTest = {};
 
 
 @Component({
@@ -25,6 +31,7 @@ export class DeliveryPage implements OnInit {
   tool: ToolResponseService;
   user: UserResponseService;
   loaderLib: HTMLIonLoadingElement;
+  formDelivery: FormGroup;
 
 
   constructor(
@@ -33,8 +40,9 @@ export class DeliveryPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getToolCodeBar();
-    this.getUsersByToken();
+    this.formBuild();
+    // this.getToolCodeBar();
+    // this.getUsersByToken();
   }
 
   getUsersByToken(): void {
@@ -101,5 +109,16 @@ export class DeliveryPage implements OnInit {
         console.error(err);
       }
     );
+  }
+
+  private formBuild(): void {
+    this.formDelivery = new FormGroup({
+      codeBarEquipment: new FormControl(''),
+      quantity: new FormControl(''),
+      days: new FormControl(''),
+      receivedBy: new FormControl(''),
+      remark: new FormControl(''),
+      tasks: new FormControl(''),
+    });
   }
 }

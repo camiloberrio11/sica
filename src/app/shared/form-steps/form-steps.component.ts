@@ -14,8 +14,7 @@ export class FormStepsComponent implements OnInit {
   ngOnInit() {}
 
   clickFormStep(index: number) {
-    console.log(index);
-    this.indexCurrent.emit(index)
+    this.indexCurrent.emit(index);
   }
 
 

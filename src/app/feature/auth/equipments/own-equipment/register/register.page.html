@@ -1,69 +1,85 @@
 <app-header [title]="'Registro de equipos'"></app-header>
 
 <ion-content [fullscreen]="true">
-  <app-form-steps [listItems]="itemsForm"></app-form-steps>
+  <app-form-steps
+    [listItems]="itemsForm"
+    (indexCurrent)="currentForm($event)"
+  ></app-form-steps>
 
   <!-- form 1 -->
-  <div class="ownequipment__register__content" *ngIf="indexCurrentForm === 0">
-    <img
-      class="ownequipment__register__content__barcode"
-      src="../../../../../../assets/img/barcode.png"
-      alt="barcode-icon"
-    />
-    <input placeholder="Escanear Código de Barras" type="text" />
-    <div class="ownequipment__register__content__upload">
-      <button>
-        <img src="../../../../../../assets/img/Camera.svg" alt="camera-icon" />
-        Tomar foto
-      </button>
-    </div>
-  </div>
+  <form [formGroup]="registerForm">
+    <div class="ownequipment__register__content" *ngIf="indexCurrentForm === 0">
+      <img
+        class="ownequipment__register__content__barcode"
+        src="../../../../../../assets/img/barcode.png"
+        alt="barcode-icon"
+      />
+      <input
+        placeholder="Escanear Código de Barras"
+        type="text"
+        formControlName="codeBar"
+      />
 
-  <!-- form 2 -->
-  <div class="ownequipment__register__two" *ngIf="indexCurrentForm === 1">
-    <div class="ownequipment__register__two__boxinput">
-      <p>Equipo</p>
-      <input type="text" placeholder="Seleccione Equipo"/>
+      <div class="ownequipment__register__content__upload">
+        <button (click)="capturePhotos()">
+          <img
+            src="../../../../../../assets/img/Camera.svg"
+            alt="camera-icon"
+          />
+          Tomar foto
+        </button>
+      </div>
     </div>
-    <div class="ownequipment__register__two__boxinput">
-      <p>Marca</p>
-      <input type="text" placeholder="Seleccione Marca"/>
-    </div>
-    <div class="ownequipment__register__two__boxinput">
-      <p>Referencia</p>
-      <input type="text" placeholder="Digite Referencia" />
-    </div>
-    <div class="ownequipment__register__two__boxinput">
-      <p>Serie</p>
-      <input type="text" placeholder="Digite Serie"/>
-    </div>
-  </div>
 
-  <div class="ownequipment__register__three" *ngIf="indexCurrentForm === 2">
-    <div class="ownequipment__register__three__boxinput">
-      <p>Proveedor</p>
-      <input type="text" placeholder="Seleccione proveedor"/>
+    <!-- form 2 -->
+    <div class="ownequipment__register__two" *ngIf="indexCurrentForm === 1">
+      <div class="ownequipment__register__two__boxinput">
+        <p>Equipo</p>
+        <input type="text" placeholder="Seleccione Equipo" />
+      </div>
+      <div class="ownequipment__register__two__boxinput">
+        <p>Marca</p>
+        <input type="text" placeholder="Seleccione Marca" />
+      </div>
+      <div class="ownequipment__register__two__boxinput">
+        <p>Referencia</p>
+        <input type="text" placeholder="Digite Referencia" />
+      </div>
+      <div class="ownequipment__register__two__boxinput">
+        <p>Serie</p>
+        <input type="text" placeholder="Digite Serie" />
+      </div>
     </div>
-    <div class="ownequipment__register__three__boxinput">
-      <p>No. FACT. / REM.</p>
-      <input type="text" placeholder="Digite # Factura - opcional"/>
-    </div>
-    <div class="ownequipment__register__three__boxinput">
-      <p>VALOR</p>
-      <input type="text" placeholder="Digite Valor - opcional"/>
-    </div>
-    <div class="ownequipment__register__three__boxinput">
-      <p>FECHA</p>
-      <input type="text" placeholder="Seleccione Fecha - opcional" />
-      <img src="../../../../../../assets/img/Calendar.svg" alt="logo-calendar">
-    </div>
-    <div class="ownequipment__register__three__boxinput">
-      <p>GARANTIA</p>
-      <input type="text" placeholder="En Meses - opcional" />
-    </div>
-  </div>
 
-  <button class="ownequipment__register__next" (click)="handleNext()">
-    {{labelBtn}}
-  </button>
+    <div class="ownequipment__register__three" *ngIf="indexCurrentForm === 2">
+      <div class="ownequipment__register__three__boxinput">
+        <p>Proveedor</p>
+        <input type="text" placeholder="Seleccione proveedor" />
+      </div>
+      <div class="ownequipment__register__three__boxinput">
+        <p>No. FACT. / REM.</p>
+        <input type="text" placeholder="Digite # Factura - opcional" />
+      </div>
+      <div class="ownequipment__register__three__boxinput">
+        <p>VALOR</p>
+        <input type="text" placeholder="Digite Valor - opcional" />
+      </div>
+      <div class="ownequipment__register__three__boxinput">
+        <p>FECHA</p>
+        <input type="text" placeholder="Seleccione Fecha - opcional" />
+        <img
+          src="../../../../../../assets/img/Calendar.svg"
+          alt="logo-calendar"
+        />
+      </div>
+      <div class="ownequipment__register__three__boxinput">
+        <p>GARANTIA</p>
+        <input type="text" placeholder="En Meses - opcional" />
+      </div>
+    </div>
+
+    <button class="ownequipment__register__next" (click)="handleNext()">
+      {{labelBtn}}
+    </button>
+  </form>
 </ion-content>

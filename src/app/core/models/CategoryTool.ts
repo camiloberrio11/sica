@@ -3,3 +3,8 @@ export interface CategoryTool {
   name: string;
   isUnit: boolean;
 }
+
+export interface BodyCreateCategoryTool {
+  name: string;
+  isUnit: boolean;
+}
