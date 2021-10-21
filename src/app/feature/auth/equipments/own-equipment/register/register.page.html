@@ -39,11 +39,12 @@
           okText="Seleccionar"
           cancelText="Cancelar"
           placeholder="Seleccione equipo"
-          (ionChange)="changeSelect($event, '')"
+          (ionChange)="changeSelect($event, 'categoryTool')"
+          formControlName="categoryTool"
         >
           <ion-select-option
             *ngFor="let ctools of listCategoryTool"
-            [value]="ctools"
+            [value]="ctools?.id"
             >{{ctools?.name}}</ion-select-option
           >
         </ion-select>
@@ -53,21 +54,28 @@
         <ion-select
           okText="Seleccionar"
           cancelText="Cancelar"
+          formControlName="brand"
           placeholder="Seleccione marca"
-          (ionChange)="changeSelect($event, '')"
+          (ionChange)="changeSelect($event, 'brand')"
         >
-          <ion-select-option *ngFor="let brands of listBrands" [value]="brands"
+          <ion-select-option
+            *ngFor="let brands of listBrands"
+            [value]="brands?.id"
             >{{brands?.name}}</ion-select-option
           >
         </ion-select>
       </div>
       <div class="ownequipment__register__two__boxinput">
         <p>Referencia</p>
-        <input type="text" placeholder="Digite Referencia" />
+        <input
+          type="text"
+          placeholder="Digite Referencia"
+          formControlName="reference"
+        />
       </div>
       <div class="ownequipment__register__two__boxinput">
         <p>Serie</p>
-        <input type="text" placeholder="Digite Serie" />
+        <input type="text" placeholder="Digite Serie" formControlName="serie" />
       </div>
     </div>
 
@@ -78,26 +86,39 @@
           okText="Seleccionar"
           cancelText="Cancelar"
           placeholder="Seleccione proveedor"
-          (ionChange)="changeSelect($event, '')"
+          formControlName="supplier"
+          (ionChange)="changeSelect($event, 'supplier')"
         >
           <ion-select-option
             *ngFor="let provider of listProviders"
-            [value]="provider"
+            [value]="provider?.id"
             >{{provider?.name}}</ion-select-option
           >
         </ion-select>
       </div>
       <div class="ownequipment__register__three__boxinput">
         <p>No. FACT. / REM.</p>
-        <input type="text" placeholder="Digite # Factura - opcional" />
+        <input
+          type="text"
+          placeholder="Digite # Factura - opcional"
+          formControlName="invoiceNumber"
+        />
       </div>
       <div class="ownequipment__register__three__boxinput">
         <p>VALOR</p>
-        <input type="text" placeholder="Digite Valor - opcional" />
+        <input
+          type="text"
+          placeholder="Digite Valor - opcional"
+          formControlName="invoicePrice"
+        />
       </div>
       <div class="ownequipment__register__three__boxinput">
         <p>FECHA</p>
-        <input type="text" placeholder="Seleccione Fecha - opcional" />
+        <input
+          type="text"
+          placeholder="Seleccione Fecha - opcional"
+          formControlName="invoiceDate"
+        />
         <img
           src="../../../../../../assets/img/Calendar.svg"
           alt="logo-calendar"
@@ -105,7 +126,11 @@
       </div>
       <div class="ownequipment__register__three__boxinput">
         <p>GARANTIA</p>
-        <input type="text" placeholder="En Meses - opcional" />
+        <input
+          type="text"
+          placeholder="En Meses - opcional"
+          formControlName="warranty"
+        />
       </div>
     </div>
 

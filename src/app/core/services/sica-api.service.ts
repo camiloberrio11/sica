@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Construction } from '../models/Construction';
 import { environment } from 'src/environments/environment';
-import { ToolResponseService } from '../models/Tool';
+import { BodyRequestCreateTool, ToolResponseService } from '../models/Tool';
 import { UserResponseService } from '../models/User';
 import { BodyCreateLoan, BodyUpdateLoan } from '../models/Loan';
 import { ConstructionService } from './construction.service';
@@ -91,5 +91,10 @@ export class SicaApiService {
 
   saveBrandTool(body: BodySaveBrandTool): Observable<{id: string}> {
     return this.http.post<{id: string}>(`${environment?.urlApi}/api/brand`, body);
+  }
+
+  saveTool(body: BodyRequestCreateTool): Observable<{id: string}> {
+    const idConstruction = this.constructionService.getSelectConstruction?.id;
+    return this.http.post<{id: string}>(`${environment?.urlApi}/api/${idConstruction}/tool`, body);
   }
 }

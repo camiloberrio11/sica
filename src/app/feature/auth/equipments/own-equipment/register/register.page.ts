@@ -8,6 +8,7 @@ import { ToastService } from 'src/app/core/services/toast.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { BrandTool } from 'src/app/core/models/BrandTool';
 import { CategoryTool } from 'src/app/core/models/CategoryTool';
+import { BodyRequestCreateTool } from 'src/app/core/models/Tool';
 
 @Component({
   selector: 'app-register',
@@ -47,7 +48,13 @@ export class RegisterPage implements OnInit {
   }
 
   changeSelect(event: any, formControl: string) {
-    console.log(event, formControl);
+    const model = event?.detail?.value;
+    if (model) {
+      console.log(model);
+
+      const value = '';
+      this.registerForm.patchValue({ [formControl]: value });
+    }
   }
 
   currentForm(event: number) {
@@ -63,7 +70,6 @@ export class RegisterPage implements OnInit {
 
   handleNext() {
     this.indexCurrentForm = this.indexCurrentForm + 1;
-
     this.itemsForm = this.itemsForm.map((item) => {
       if (item?.title === this.itemsForm[this.indexCurrentForm]?.title) {
         item.status = true;
@@ -75,7 +81,32 @@ export class RegisterPage implements OnInit {
       this.itemsForm.length;
     if (existNext) {
       this.labelBtn = 'Guardar';
+      this.handleSaveRegister();
     }
+  }
+
+  handleSaveRegister(): void {
+    const values = this.registerForm?.value;
+    console.log(values);
+    const body: BodyRequestCreateTool = {
+      invoice: {
+        date: values?.invoiceDate,
+        number: +values?.invoiceNumber,
+        supplier: values?.supplier,
+        price: +values?.invoicePrice,
+        warranty: values?.warranty,
+      },
+      tool: {
+        image: values?.photoOwn,
+        barcode: values?.codeBar,
+        reference: values?.reference,
+        serial: values?.serie,
+        category: values?.categoryTool,
+        brand: values?.brand,
+        profile: '{{profileId1}}',
+      },
+    };
+    this.createTool(body);
   }
 
   capturePhotos(): void {
@@ -123,7 +154,6 @@ export class RegisterPage implements OnInit {
     );
   }
 
-
   private categoryTool(): void {
     // this.loading.initLoading('Obteniendo  marcas');
     this.sicaApi.getCategoryTool().subscribe(
@@ -141,6 +171,31 @@ export class RegisterPage implements OnInit {
   private formBuild(): void {
     this.registerForm = new FormGroup({
       codeBar: new FormControl('', Validators.required),
+      photoOwn: new FormControl('', Validators.required),
+      categoryTool: new FormControl('', Validators.required),
+      brand: new FormControl('', Validators.required),
+      reference: new FormControl('', Validators.required),
+      serie: new FormControl('', Validators.required),
+      supplier: new FormControl('', Validators.required),
+      invoiceNumber: new FormControl('', Validators.required),
+      invoiceDate: new FormControl('', Validators.required),
+      invoicePrice: new FormControl('', Validators.required),
+      warranty: new FormControl('', Validators.required),
     });
+  }
+
+  private createTool(body: BodyRequestCreateTool): void {
+    this.loading.initLoading('Creando');
+    this.sicaApi.saveTool(body).subscribe(
+      (data) => {
+        console.log(data);
+        this.loading.endLoading();
+        this.toastService.createToast('Se ha creado con éxito', 'success');
+      },
+      (err) => {
+        this.loading.endLoading();
+        this.toastService.createToast('Ha ocurrido un error en la creación', 'danger');
+      }
+    );
   }
 }

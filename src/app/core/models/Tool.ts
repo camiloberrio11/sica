@@ -46,3 +46,21 @@ export interface ToolResponseService {
     email: string;
   }
 
+  export interface BodyRequestCreateTool {
+    invoice: {
+      date: string;
+      number: number;
+      supplier: string;
+      price: number;
+      warranty: number;
+    };
+    tool: {
+      image: string;
+      barcode: string;
+      reference: string;
+      serial: string;
+      category: string;
+      brand: string;
+      profile: string;
+    };
+  }
