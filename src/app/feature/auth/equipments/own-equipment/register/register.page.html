@@ -35,11 +35,31 @@
     <div class="ownequipment__register__two" *ngIf="indexCurrentForm === 1">
       <div class="ownequipment__register__two__boxinput">
         <p>Equipo</p>
-        <input type="text" placeholder="Seleccione Equipo" />
+        <ion-select
+          okText="Seleccionar"
+          cancelText="Cancelar"
+          placeholder="Seleccione equipo"
+          (ionChange)="changeSelect($event, '')"
+        >
+          <ion-select-option
+            *ngFor="let ctools of listCategoryTool"
+            [value]="ctools"
+            >{{ctools?.name}}</ion-select-option
+          >
+        </ion-select>
       </div>
       <div class="ownequipment__register__two__boxinput">
         <p>Marca</p>
-        <input type="text" placeholder="Seleccione Marca" />
+        <ion-select
+          okText="Seleccionar"
+          cancelText="Cancelar"
+          placeholder="Seleccione marca"
+          (ionChange)="changeSelect($event, '')"
+        >
+          <ion-select-option *ngFor="let brands of listBrands" [value]="brands"
+            >{{brands?.name}}</ion-select-option
+          >
+        </ion-select>
       </div>
       <div class="ownequipment__register__two__boxinput">
         <p>Referencia</p>
@@ -54,7 +74,18 @@
     <div class="ownequipment__register__three" *ngIf="indexCurrentForm === 2">
       <div class="ownequipment__register__three__boxinput">
         <p>Proveedor</p>
-        <input type="text" placeholder="Seleccione proveedor" />
+        <ion-select
+          okText="Seleccionar"
+          cancelText="Cancelar"
+          placeholder="Seleccione proveedor"
+          (ionChange)="changeSelect($event, '')"
+        >
+          <ion-select-option
+            *ngFor="let provider of listProviders"
+            [value]="provider"
+            >{{provider?.name}}</ion-select-option
+          >
+        </ion-select>
       </div>
       <div class="ownequipment__register__three__boxinput">
         <p>No. FACT. / REM.</p>

@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormStep } from 'src/app/core/models/Formstep';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { SicaApiService } from 'src/app/core/services/sica-api.service';
+import { Supplier } from 'src/app/core/models/Suplplier';
+import { ToastService } from 'src/app/core/services/toast.service';
+import { LoadingService } from 'src/app/core/services/loading.service';
+import { BrandTool } from 'src/app/core/models/BrandTool';
+import { CategoryTool } from 'src/app/core/models/CategoryTool';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +16,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 export class RegisterPage implements OnInit {
   registerForm: FormGroup;
+  listProviders: Supplier[];
+  listCategoryTool: CategoryTool[];
+  listBrands: BrandTool[];
   options: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.FILE_URI,
@@ -24,10 +33,21 @@ export class RegisterPage implements OnInit {
   indexCurrentForm = 0;
   labelBtn = 'Continuar';
 
-  constructor(private camera: Camera) {}
+  constructor(
+    private camera: Camera,
+    private sicaApi: SicaApiService,
+    private toastService: ToastService,
+    private loading: LoadingService
+  ) {}
 
   ngOnInit() {
     this.formBuild();
+    this.getProviders();
+    this.categoryTool();
+  }
+
+  changeSelect(event: any, formControl: string) {
+    console.log(event, formControl);
   }
 
   currentForm(event: number) {
@@ -67,6 +87,53 @@ export class RegisterPage implements OnInit {
       (err) => {
         console.warn(err);
         // Handle error
+      }
+    );
+  }
+
+  private getProviders(): void {
+    // this.loading.initLoading('Obteniendo proveedores');
+    this.sicaApi.getSupplier().subscribe(
+      (sup) => {
+        this.listProviders = sup;
+        // this.loading.endLoading();
+        this.getBrandsTools();
+      },
+      (err) => {
+        this.loading.endLoading();
+        this.toastService.createToast(
+          'Ocurrió un error con proveedores',
+          'danger'
+        );
+      }
+    );
+  }
+
+  private getBrandsTools(): void {
+    // this.loading.initLoading('Obteniendo  marcas');
+    this.sicaApi.getBrandsTool().subscribe(
+      (bran) => {
+        this.loading.endLoading();
+        this.listBrands = bran;
+      },
+      (err) => {
+        this.loading.endLoading();
+        this.toastService.createToast('Ocurrió un error con marcas', 'danger');
+      }
+    );
+  }
+
+
+  private categoryTool(): void {
+    // this.loading.initLoading('Obteniendo  marcas');
+    this.sicaApi.getCategoryTool().subscribe(
+      (tool) => {
+        this.loading.endLoading();
+        this.listCategoryTool = tool;
+      },
+      (err) => {
+        this.loading.endLoading();
+        this.toastService.createToast('Ocurrió un error con marcas', 'danger');
       }
     );
   }

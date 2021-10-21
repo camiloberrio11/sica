@@ -85,8 +85,8 @@ export class SicaApiService {
     );
   }
 
-  getBrandsTool(): Observable<BrandTool> {
-    return this.http.get<BrandTool>(`${environment?.urlApi}/api/brand`);
+  getBrandsTool(): Observable<BrandTool[]> {
+    return this.http.get<BrandTool[]>(`${environment?.urlApi}/api/brand`);
   }
 
   saveBrandTool(body: BodySaveBrandTool): Observable<{id: string}> {

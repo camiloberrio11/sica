@@ -17,6 +17,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     OwnEquipmentPageRoutingModule,
     SharedModule
   ],
-  declarations: [OwnEquipmentPage]
+  declarations: [OwnEquipmentPage],
 })
 export class OwnEquipmentPageModule {}
