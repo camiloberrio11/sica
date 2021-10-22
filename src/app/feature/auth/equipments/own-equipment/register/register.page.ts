@@ -33,6 +33,7 @@ export class RegisterPage implements OnInit {
   ];
   indexCurrentForm = 0;
   labelBtn = 'Continuar';
+  isEndForm = false;
 
   constructor(
     private camera: Camera,
@@ -50,10 +51,7 @@ export class RegisterPage implements OnInit {
   changeSelect(event: any, formControl: string) {
     const model = event?.detail?.value;
     if (model) {
-      console.log(model);
-
-      const value = '';
-      this.registerForm.patchValue({ [formControl]: value });
+      this.registerForm.patchValue({ [formControl]: model });
     }
   }
 
@@ -69,6 +67,9 @@ export class RegisterPage implements OnInit {
   }
 
   handleNext() {
+    if (this.labelBtn === 'Guardar') {
+      this.handleSaveRegister();
+    }
     this.indexCurrentForm = this.indexCurrentForm + 1;
     this.itemsForm = this.itemsForm.map((item) => {
       if (item?.title === this.itemsForm[this.indexCurrentForm]?.title) {
@@ -81,7 +82,7 @@ export class RegisterPage implements OnInit {
       this.itemsForm.length;
     if (existNext) {
       this.labelBtn = 'Guardar';
-      this.handleSaveRegister();
+      return;
     }
   }
 
@@ -91,19 +92,21 @@ export class RegisterPage implements OnInit {
     const body: BodyRequestCreateTool = {
       invoice: {
         date: values?.invoiceDate,
-        number: +values?.invoiceNumber,
+        number: values?.invoiceNumber,
         supplier: values?.supplier,
         price: +values?.invoicePrice,
-        warranty: values?.warranty,
+        warranty: +values?.warranty,
       },
       tool: {
-        image: values?.photoOwn,
+        image:
+          values?.photoOwn ||
+          'https://res.cloudinary.com/dupegtamn/image/upload/v1634866658/tools_zx27zy.jpg',
         barcode: values?.codeBar,
         reference: values?.reference,
         serial: values?.serie,
         category: values?.categoryTool,
         brand: values?.brand,
-        profile: '{{profileId1}}',
+        profile: '616b874008dbdcc901e43699',
       },
     };
     this.createTool(body);
@@ -191,10 +194,21 @@ export class RegisterPage implements OnInit {
         console.log(data);
         this.loading.endLoading();
         this.toastService.createToast('Se ha creado con éxito', 'success');
+        this.itemsForm = [
+          { title: 'Fotos', status: true },
+          { title: 'Datos', status: false },
+          { title: 'Factura', status: false },
+        ];
+        this.indexCurrentForm = 0;
+        this.labelBtn = 'Continuar';
+        this.isEndForm = false;
       },
       (err) => {
         this.loading.endLoading();
-        this.toastService.createToast('Ha ocurrido un error en la creación', 'danger');
+        this.toastService.createToast(
+          'Ha ocurrido un error en la creación',
+          'danger'
+        );
       }
     );
   }
