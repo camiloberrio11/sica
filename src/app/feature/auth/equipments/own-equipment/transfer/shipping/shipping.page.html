@@ -122,13 +122,12 @@
       <div class="shipping__forms__two__tokenbox">
         <img src="assets/img/nfc.svg" alt="nfc-icon" />
         <button (click)="activeNfc()">
+          {{readingNfc ? 'Leyendo': ''}}
           <p>
             Oprima para activar lectura del token para autorizar el translado
-            {{shippingForm?.get('userNfc')?.value && 'Usuario' +
-            shippingForm?.get('userNfc')?.value}}
           </p>
+          {{shippingForm?.get('userNfc')?.value}}
         </button>
-
       </div>
     </div>
 

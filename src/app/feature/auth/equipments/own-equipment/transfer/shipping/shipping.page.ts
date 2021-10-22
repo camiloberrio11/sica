@@ -18,6 +18,7 @@ import { NFC, Ndef } from '@ionic-native/nfc/ngx';
   styleUrls: ['./shipping.page.scss'],
 })
 export class ShippingPage implements OnInit {
+  readingNfc = false;
   readerMode$: Subscription;
   listConstructions: Construction[] = [];
   listReason: Reason[] = [];
@@ -70,6 +71,7 @@ export class ShippingPage implements OnInit {
   }
 
   activeNfc(): void {
+    this.readingNfc = true;
     this.readerMode$ = this.nfc
       .addNdefListener(
         () => {
@@ -80,11 +82,12 @@ export class ShippingPage implements OnInit {
         }
       )
       .subscribe((event) => {
+        console.log(event);
         const decode = this.nfc
           .bytesToString(event.tag.ndefMessage[0].payload)
           ?.split('en')
           ?.pop();
-          this.updateNfcUser(decode);
+        this.updateNfcUser(decode);
       });
   }
 
@@ -174,9 +177,10 @@ export class ShippingPage implements OnInit {
   }
 
   private updateNfcUser(codeUser: string): void {
+    this.readingNfc = false;
     console.log(codeUser)
     this.shippingForm.patchValue({
-      userNfc: codeUser
+      userNfc: codeUser,
     });
     this.readerMode$?.unsubscribe();
   }
