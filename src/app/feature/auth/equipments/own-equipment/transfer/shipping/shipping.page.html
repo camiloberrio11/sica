@@ -7,110 +7,128 @@
   ></app-form-steps>
 
   <!-- Form 0 -->
-  <div class="shipping__forms__one" *ngIf="indexCurrentForm === 0">
-    <div class="shipping__forms__one__boxinput">
-      <p>Escanear</p>
-      <button (click)="scanCodeBar()">
-        <img
-          class="shipping__forms__one__boxinput__icon"
-          src="assets/img/barcode.png"
-          alt="barcode-icon"
+  <form [formGroup]="shippingForm">
+    <div class="shipping__forms__one" *ngIf="indexCurrentForm === 0">
+      <div class="shipping__forms__one__boxinput">
+        <p>Escanear</p>
+        <button (click)="scanCodeBar()">
+          <img
+            class="shipping__forms__one__boxinput__icon"
+            src="assets/img/barcode.png"
+            alt="barcode-icon"
+          />
+          {{toolInfo ? toolInfo?.barcode : 'Escanear código'}}
+        </button>
+      </div>
+      <div class="shipping__forms__one__boxinput">
+        <p>Equipo</p>
+        <input
+          type="text"
+          placeholder="Marca"
+          [value]="toolInfo?.category?.name"
         />
-        {{toolInfo ? toolInfo?.barcode : 'Escanear código'}}
-      </button>
+      </div>
+      <div class="shipping__forms__one__boxinput">
+        <p>Marca</p>
+        <input
+          type="text"
+          placeholder="Referencia"
+          [value]="toolInfo?.brand?.name"
+        />
+      </div>
+      <div class="shipping__forms__one__boxinput">
+        <p>Referencia</p>
+        <input
+          type="text"
+          placeholder="Digite Serie"
+          [value]="toolInfo?.reference"
+        />
+      </div>
+      <div class="shipping__forms__one__boxinput">
+        <p>Serie</p>
+        <input
+          type="text"
+          placeholder="Seleccione Equipo"
+          [value]="toolInfo?.serial"
+        />
+      </div>
+      <div class="shipping__forms__one__boxinput">
+        <p>Fecha de compra</p>
+        <input
+          type="text"
+          placeholder="Seleccione Equipo"
+          [value]="toolInfo?.invoices[0].date"
+        />
+      </div>
+      <div class="shipping__forms__one__boxinput">
+        <p>Garantía</p>
+        <input
+          type="text"
+          placeholder="Seleccione Equipo"
+          [value]="toolInfo?.warrantyExpirationDate"
+        />
+      </div>
     </div>
-    <div class="shipping__forms__one__boxinput">
-      <p>Equipo</p>
-      <input
-        type="text"
-        placeholder="Marca"
-        [value]="toolInfo?.category?.name"
-      />
-    </div>
-    <div class="shipping__forms__one__boxinput">
-      <p>Marca</p>
-      <input
-        type="text"
-        placeholder="Referencia"
-        [value]="toolInfo?.brand?.name"
-      />
-    </div>
-    <div class="shipping__forms__one__boxinput">
-      <p>Referencia</p>
-      <input
-        type="text"
-        placeholder="Digite Serie"
-        [value]="toolInfo?.reference"
-      />
-    </div>
-    <div class="shipping__forms__one__boxinput">
-      <p>Serie</p>
-      <input
-        type="text"
-        placeholder="Seleccione Equipo"
-        [value]="toolInfo?.serial"
-      />
-    </div>
-    <div class="shipping__forms__one__boxinput">
-      <p>Fecha de compra</p>
-      <input
-        type="text"
-        placeholder="Seleccione Equipo"
-        [value]="toolInfo?.invoices[0].date"
-      />
-    </div>
-    <div class="shipping__forms__one__boxinput">
-      <p>Garantía</p>
-      <input
-        type="text"
-        placeholder="Seleccione Equipo"
-        [value]="toolInfo?.warrantyExpirationDate"
-      />
-    </div>
-  </div>
 
-  <!-- form 1  -->
-  <div class="shipping__forms__two" *ngIf="indexCurrentForm === 1">
-    <div class="shipping__forms__two__select">
-      <ion-list>
-        <ion-item class="shipping__forms__two__select__label">
-          <ion-label>Seleccione destino</ion-label>
-          <ion-select okText="Seleccionar" cancelText="Cancelar">
-            <ion-select-option
-              *ngFor="let constr of listDestiny"
-              [value]="constr.id"
-              >{{constr.title}}</ion-select-option
+    <!-- form 1  -->
+    <div class="shipping__forms__two" *ngIf="indexCurrentForm === 1">
+      <div class="shipping__forms__two__select">
+        <ion-list>
+          <ion-item class="shipping__forms__two__select__label">
+            <ion-label>Seleccione destino</ion-label>
+            <ion-select
+              okText="Seleccionar"
+              cancelText="Cancelar"
+              formControlName="destination"
             >
-          </ion-select>
-        </ion-item>
-      </ion-list>
-    </div>
+              <ion-select-option
+                *ngFor="let constr of listConstructions"
+                [value]="constr.id"
+                >{{constr.name}}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
 
-    <div class="shipping__forms__two__select">
-      <ion-list>
-        <ion-item class="shipping__forms__two__select__label">
-          <ion-label>Seleccione motivo</ion-label>
-          <ion-select okText="Seleccionar" cancelText="Cancelar">
-            <ion-select-option
-              *ngFor="let constr of listDestiny"
-              [value]="constr.id"
-              >{{constr.title}}</ion-select-option
+      <div class="shipping__forms__two__select">
+        <ion-list>
+          <ion-item class="shipping__forms__two__select__label">
+            <ion-label>Seleccione motivo</ion-label>
+            <ion-select
+              okText="Seleccionar"
+              cancelText="Cancelar"
+              formControlName="reason"
             >
-          </ion-select>
-        </ion-item>
-      </ion-list>
+              <ion-select-option
+                *ngFor="let reason of listReason"
+                [value]="reason.id"
+                >{{reason.description}}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <div class="shipping__forms__two__date">
+        <input
+          type="text"
+          placeholder="Fecha aproximada de entrega"
+          formControlName="devolutionEstimatedDate"
+        />
+        <img src="assets/img/Calendar.svg" alt="calendar-icon" />
+      </div>
+
+      <div class="shipping__forms__two__tokenbox">
+        <img src="assets/img/nfc.svg" alt="nfc-icon" />
+        <p>
+          Acerque el token para autorizar el translado
+          {{shippingForm?.get('userNfc')?.value && 'Usuario' +
+          shippingForm?.get('userNfc')?.value}}
+        </p>
+      </div>
     </div>
 
-    <div class="shipping__forms__two__date">
-      <input type="text" placeholder="Fecha aproximada de entrega" />
-      <img src="assets/img/Calendar.svg" alt="calendar-icon" />
-    </div>
-
-    <div class="shipping__forms__two__tokenbox">
-      <img src="assets/img/nfc.svg" alt="nfc-icon" />
-      <p>Acerque el token para autorizar el translado</p>
-    </div>
-  </div>
-
-  <button class="shipping__next" (click)="handleNext()">{{labelBtn}}</button>
+    <button class="shipping__next" (click)="handleNext()">{{labelBtn}}</button>
+  </form>
 </ion-content>
