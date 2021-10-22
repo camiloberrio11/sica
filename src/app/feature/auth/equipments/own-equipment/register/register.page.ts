@@ -10,12 +10,9 @@ import { BrandTool } from 'src/app/core/models/BrandTool';
 import { CategoryTool } from 'src/app/core/models/CategoryTool';
 import { BodyRequestCreateTool } from 'src/app/core/models/Tool';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { BarcodeScanResult } from 'src/app/core/models/BarcodeResult';
 
-interface BarcodeScanResult {
-  text: string;
-  format: string;
-  cancelled: boolean;
-}
+
 
 @Component({
   selector: 'app-register',
