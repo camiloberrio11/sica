@@ -10,26 +10,29 @@
   <div class="shipping__forms__one" *ngIf="indexCurrentForm === 0">
     <div class="shipping__forms__one__boxinput">
       <p>Escanear</p>
-      <!-- <input type="text" placeholder="Seleccione Equipo" /> -->
       <button (click)="scanCodeBar()">
         <img
           class="shipping__forms__one__boxinput__icon"
           src="assets/img/barcode.png"
           alt="barcode-icon"
         />
-        Escanear codigo
+        {{toolInfo ? toolInfo?.barcode : 'Escanear código'}}
       </button>
     </div>
     <div class="shipping__forms__one__boxinput">
       <p>Equipo</p>
-      <input type="text" placeholder="Marca" [value]="toolInfo?.trademark" />
+      <input
+        type="text"
+        placeholder="Marca"
+        [value]="toolInfo?.category?.name"
+      />
     </div>
     <div class="shipping__forms__one__boxinput">
       <p>Marca</p>
       <input
         type="text"
         placeholder="Referencia"
-        [value]="toolInfo?.trademark"
+        [value]="toolInfo?.brand?.name"
       />
     </div>
     <div class="shipping__forms__one__boxinput">

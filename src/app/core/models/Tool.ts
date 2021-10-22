@@ -5,6 +5,10 @@ export interface ToolResponseService {
     trademark: Trademark;
     category: Category;
     profile: Trademark;
+    brand: {
+      name: string;
+      id: string;
+    }
     barcode: string;
     image: string;
     reference: string;
