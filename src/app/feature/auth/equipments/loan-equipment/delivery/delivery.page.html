@@ -30,7 +30,7 @@
   <div class="delivery__form" *ngIf="indexCurrentForm === 1">
     <div class="delivery__form__boxinput">
       <p>Entregado A</p>
-      <button>
+      <button (click)="activeNfc()">
         {{receivedBy}}
         <img
           class="delivery__form__boxinput__icon"

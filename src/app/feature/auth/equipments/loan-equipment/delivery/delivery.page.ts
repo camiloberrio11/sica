@@ -67,10 +67,11 @@ export class DeliveryPage implements OnInit {
         }
       )
       .subscribe((event) => {
-        this.receivedBy = this.nfc
+        const decodeNfc = this.nfc
           .bytesToString(event.tag.ndefMessage[0].payload)
           ?.split('en')
           ?.pop();
+        this.getUsersByToken(decodeNfc);
       });
   }
 
@@ -97,25 +98,13 @@ export class DeliveryPage implements OnInit {
     }
     this.listItemsForm = updateList;
     this.existNext =
-    this.listItemsForm.filter((item) => item?.status === true)?.length ===
-    this.listItemsForm.length;
-  if (this.existNext) {
-    this.labelBtn = 'Entregar';
-  } else {
-    this.labelBtn = 'Continuar';
-
-  }
-  }
-
-  getUsersByToken(): void {
-    this.sicaService.getUserByToken('abc32101').subscribe(
-      (usr) => {
-        this.user = usr;
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+      this.listItemsForm.filter((item) => item?.status === true)?.length ===
+      this.listItemsForm.length;
+    if (this.existNext) {
+      this.labelBtn = 'Entregar';
+    } else {
+      this.labelBtn = 'Continuar';
+    }
   }
 
   getToolCodeBar(codebar: string): void {
@@ -164,6 +153,19 @@ export class DeliveryPage implements OnInit {
       (cre) => {
         console.log(cre);
         this.toastrService.createToast('Creado con éxito', 'success');
+        this.deliveredBy = '';
+        this.receivedBy = '';
+        this.quantity = null;
+        this.days = null;
+        this.tasks = '';
+        this.remark = '';
+        this.listItemsForm= [
+          { title: 'Equipo', status: true },
+          { title: 'Usuario', status: false },
+        ];
+        this.indexCurrentForm = 0;
+        this.labelBtn = 'Continuar';
+        this.existNext = false;
       },
       (err) => {
         console.error(err);
@@ -180,5 +182,16 @@ export class DeliveryPage implements OnInit {
       remark: new FormControl(''),
       tasks: new FormControl(''),
     });
+  }
+
+  private getUsersByToken(token: string): void {
+    this.sicaService.getUserByToken(token).subscribe(
+      (usr) => {
+        this.receivedBy = usr.id;
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 }
