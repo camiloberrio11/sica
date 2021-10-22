@@ -9,6 +9,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 import { BrandTool } from 'src/app/core/models/BrandTool';
 import { CategoryTool } from 'src/app/core/models/CategoryTool';
 import { BodyRequestCreateTool } from 'src/app/core/models/Tool';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-register',
@@ -39,13 +40,25 @@ export class RegisterPage implements OnInit {
     private camera: Camera,
     private sicaApi: SicaApiService,
     private toastService: ToastService,
-    private loading: LoadingService
+    private loading: LoadingService,
+    private barcodeScanner: BarcodeScanner
   ) {}
 
   ngOnInit() {
     this.formBuild();
     this.getProviders();
     this.categoryTool();
+  }
+
+  scanCodeBar() {
+    this.barcodeScanner
+      .scan()
+      .then((barcodeData) => {
+        console.log('Barcode data', barcodeData);
+      })
+      .catch((err) => {
+        console.log('Error', err);
+      });
   }
 
   changeSelect(event: any, formControl: string) {

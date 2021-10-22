@@ -10,7 +10,7 @@
   <form [formGroup]="registerForm">
     <div class="ownequipment__register__content" *ngIf="indexCurrentForm === 0">
 
-      <button>
+      <button (click)="scanCodeBar()">
         <img
         class="ownequipment__register__content__barcode"
         src="../../../../../../assets/img/barcode.png"
