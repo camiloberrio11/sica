@@ -8,12 +8,15 @@ import { SicaApiService } from 'src/app/core/services/sica-api.service';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { LoadingController } from '@ionic/angular';
 import { FormControl, FormGroup } from '@angular/forms';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { BarcodeScanResult } from 'src/app/core/models/BarcodeResult';
+import { Subscription } from 'rxjs';
+import { NFC } from '@ionic-native/nfc/ngx';
 
 const userTest = {
-  codebar: 'ABC12310'
+  codebar: 'ABC12310',
 };
 const equipmentTest = {};
-
 
 @Component({
   selector: 'app-delivery',
@@ -21,6 +24,7 @@ const equipmentTest = {};
   styleUrls: ['./delivery.page.scss'],
 })
 export class DeliveryPage implements OnInit {
+  readerMode$: Subscription;
   listItemsForm: FormStep[] = [
     { title: 'Equipo', status: true },
     { title: 'Usuario', status: false },
@@ -33,16 +37,74 @@ export class DeliveryPage implements OnInit {
   loaderLib: HTMLIonLoadingElement;
   formDelivery: FormGroup;
 
+  // Propertys form
+  deliveredBy: string;
+  receivedBy: string;
+  quantity: number;
+  days: number;
+  tasks: string;
+  remark: string;
 
   constructor(
     private sicaService: SicaApiService,
     private toastrService: ToastService,
+    private barcodeScanner: BarcodeScanner,
+    private nfc: NFC
   ) {}
 
   ngOnInit() {
     this.formBuild();
-    // this.getToolCodeBar();
-    // this.getUsersByToken();
+  }
+
+  activeNfc(): void {
+    this.readerMode$ = this.nfc
+      .addNdefListener(
+        () => {
+          console.log('successfully attached ndef listener');
+        },
+        (err) => {
+          console.log('error attaching ndef listener', err);
+        }
+      )
+      .subscribe((event) => {
+        this.receivedBy = this.nfc
+          .bytesToString(event.tag.ndefMessage[0].payload)
+          ?.split('en')
+          ?.pop();
+      });
+  }
+
+  scanCodeBar() {
+    this.barcodeScanner
+      .scan()
+      .then((barcodeData: BarcodeScanResult) => {
+        if (barcodeData?.text) {
+          this.getToolCodeBar(barcodeData.text);
+        }
+      })
+      .catch((err) => {
+        console.log('Error', err);
+      });
+  }
+
+  currentForm(event: number) {
+    this.indexCurrentForm = event;
+    const updateList: FormStep[] = [];
+    for (let index = 0; index < this.listItemsForm?.length; index++) {
+      const status = index <= event;
+      const element = this.listItemsForm[index];
+      updateList.push({ title: element.title, status });
+    }
+    this.listItemsForm = updateList;
+    this.existNext =
+    this.listItemsForm.filter((item) => item?.status === true)?.length ===
+    this.listItemsForm.length;
+  if (this.existNext) {
+    this.labelBtn = 'Entregar';
+  } else {
+    this.labelBtn = 'Continuar';
+
+  }
   }
 
   getUsersByToken(): void {
@@ -56,8 +118,8 @@ export class DeliveryPage implements OnInit {
     );
   }
 
-  getToolCodeBar(): void {
-    this.sicaService.getToolByCodeBar('ABC123').subscribe(
+  getToolCodeBar(codebar: string): void {
+    this.sicaService.getToolByCodeBar(codebar).subscribe(
       (tool) => {
         this.tool = tool;
       },
@@ -68,6 +130,10 @@ export class DeliveryPage implements OnInit {
   }
 
   handleNext() {
+    if (this.labelBtn === 'Entregar') {
+      this.createLoan();
+      return;
+    }
     this.indexCurrentForm = this.indexCurrentForm + 1;
 
     this.listItemsForm = this.listItemsForm.map((item) => {
@@ -76,12 +142,6 @@ export class DeliveryPage implements OnInit {
       }
       return item;
     });
-    if (this.existNext) {
-      this.createLoan();
-      this.indexCurrentForm = this.indexCurrentForm - 1;
-
-      return;
-    }
     this.existNext =
       this.listItemsForm.filter((item) => item?.status === true)?.length ===
       this.listItemsForm.length;
@@ -92,12 +152,12 @@ export class DeliveryPage implements OnInit {
 
   private createLoan(): void {
     const body: BodyCreateLoan = {
-      deliveredBy: '6151e8314cfcd6faa44d846a',
-      receivedBy: this.user?.id,
-      quantity: 1,
-      days: 8,
-      tasks: 'terminar acabados obra gris',
-      remark: '',
+      deliveredBy: '616b873b08dbdcc901e43682',
+      receivedBy: this.receivedBy,
+      quantity: +this.quantity,
+      days: +this.days,
+      tasks: this.tasks,
+      remark: this.remark,
       tool: this.tool?.id,
     };
     this.sicaService.createLoan(body).subscribe(

@@ -1,35 +1,43 @@
 <app-header [title]="'Entrega de equipos'"></app-header>
 
 <ion-content [fullscreen]="true" class="delivery">
-  <app-form-steps [listItems]="listItemsForm"></app-form-steps>
+  <app-form-steps
+    [listItems]="listItemsForm"
+    (indexCurrent)="currentForm($event)"
+  ></app-form-steps>
   <div class="delivery__form" *ngIf="indexCurrentForm === 0">
-      <div class="delivery__form__boxinput">
-        <p>Escanear</p>
-        <input type="text" placeholder="Seleccione Equipo" value="ABC123" />
-        <button class="delivery__form__boxinput__icon">
-          <img src="assets/img/barcode.png" alt="barcode-icon" />
-        </button>
-      </div>
-      <div class="delivery__description">
-        <p>Verificar datos del equipo</p>
-        <p>{{tool?.trademark?.name}}</p>
-        <p>{{tool?.category?.name}}</p>
-        <p>{{tool?.reference}}</p>
-        <p>{{tool?.serial}}</p>
-        <p>{{tool?.isOwned ? 'Propio' : 'Alquilado'}}</p>
-        <button>OK</button>
-      </div>
+    <div class="delivery__form__boxinput">
+      <p>Escanear</p>
+      <button (click)="scanCodeBar()">
+        <img
+          class="delivery__form__boxinput__icon"
+          src="assets/img/barcode.png"
+          alt="barcode-icon"
+        />
+      </button>
+    </div>
+    <div class="delivery__description">
+      <p>Verificar datos del equipo</p>
+      <p>{{tool?.trademark?.name}}</p>
+      <p>{{tool?.category?.name}}</p>
+      <p>{{tool?.reference}}</p>
+      <p>{{tool?.serial}}</p>
+      <p>{{tool?.isOwned ? 'Propio' : tool ? 'Alquilado' : ''}}</p>
+      <button>OK</button>
+    </div>
   </div>
   <!-- form 1 -->
   <div class="delivery__form" *ngIf="indexCurrentForm === 1">
     <div class="delivery__form__boxinput">
       <p>Entregado A</p>
-      <input type="text" placeholder="Leer NFC" value="abc32101" />
-      <img
-        class="delivery__form__boxinput__icon"
-        src="../../../../../../assets/img/barcode.png"
-        alt="barcode-icon"
-      />
+      <button>
+        {{receivedBy}}
+        <img
+          class="delivery__form__boxinput__icon"
+          src="assets/img/nfc.svg"
+          alt="barcode-icon"
+        />
+      </button>
     </div>
     <div class="delivery__form__boxinput">
       <p>Contratista</p>
@@ -44,21 +52,21 @@
     <div class="delivery__form__fieldsnum">
       <div class="delivery__form__fieldsnum__field">
         <label>Cantidad</label>
-        <input type="text" />
+        <input type="text" [(ngModel)]="quantity" />
       </div>
 
       <div class="delivery__form__fieldsnum__field">
         <label>Días</label>
-        <input type="text" />
+        <input type="text" [(ngModel)]="days" />
       </div>
     </div>
 
     <div class="delivery__form__boxlineinput">
-      <input type="text" placeholder="Actividad" />
+      <input type="text" placeholder="Actividad" [(ngModel)]="tasks" />
     </div>
 
     <div class="delivery__form__boxlineinput">
-      <input type="text" placeholder="Observacion" />
+      <input type="text" placeholder="Observacion" [(ngModel)]="remark" />
     </div>
   </div>
 

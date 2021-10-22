@@ -10,11 +10,12 @@
       height: 50px;
       margin-bottom: 10px;
       position: relative;
-      input {
+      input, button {
         padding-left: 15px;
         width: 70%;
         float: left;
         height: 100%;
+        background-color: transparent;
         border: 1px solid var(--secondary-color);
       }
       p {
