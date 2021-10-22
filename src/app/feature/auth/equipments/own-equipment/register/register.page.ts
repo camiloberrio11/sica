@@ -11,6 +11,12 @@ import { CategoryTool } from 'src/app/core/models/CategoryTool';
 import { BodyRequestCreateTool } from 'src/app/core/models/Tool';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
+interface BarcodeScanResult {
+  text: string;
+  format: string;
+  cancelled: boolean;
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -53,8 +59,8 @@ export class RegisterPage implements OnInit {
   scanCodeBar() {
     this.barcodeScanner
       .scan()
-      .then((barcodeData) => {
-        console.log('Barcode data', barcodeData);
+      .then((barcodeData: BarcodeScanResult) => {
+        this.registerForm.patchValue({ barcode: barcodeData?.text });
       })
       .catch((err) => {
         console.log('Error', err);
