@@ -10,6 +10,7 @@ import { ConstructionService } from './construction.service';
 import { BodyCreateSupplier, Supplier } from '../models/Suplplier';
 import { BodyCreateCategoryTool, CategoryTool } from '../models/CategoryTool';
 import { BodySaveBrandTool, BrandTool } from '../models/BrandTool';
+import { Reason } from '../models/Reason';
 
 @Injectable({
   providedIn: 'root',
@@ -96,5 +97,9 @@ export class SicaApiService {
   saveTool(body: BodyRequestCreateTool): Observable<{id: string}> {
     const idConstruction = this.constructionService.getSelectConstruction?.id;
     return this.http.post<{id: string}>(`${environment?.urlApi}/api/${idConstruction}/tool`, body);
+  }
+
+  getReason(): Observable<Reason[]> {
+    return this.http.get<Reason[]>(`${environment?.urlApi}/api/reason`);
   }
 }
