@@ -9,14 +9,14 @@
   <!-- form 1 -->
   <form [formGroup]="registerForm">
     <div class="ownequipment__register__content" *ngIf="indexCurrentForm === 0">
-
       <button (click)="scanCodeBar()">
         <img
-        class="ownequipment__register__content__barcode"
-        src="../../../../../../assets/img/barcode.png"
-        alt="barcode-icon"
-      />
-      Escanear codigo de barras
+          class="ownequipment__register__content__barcode"
+          src="../../../../../../assets/img/barcode.png"
+          alt="barcode-icon"
+        />
+        {{registerForm.get('codeBar')?.value ?
+        registerForm.get('codeBar')?.value : 'Escanear codigo de barras'}}
       </button>
       <div class="ownequipment__register__content__upload">
         <button (click)="capturePhotos()">
