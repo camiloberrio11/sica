@@ -55,9 +55,9 @@ export class SicaApiService {
 
   returnLoan(
     body: BodyUpdateLoan,
-    idLoan: string,
-    idConstruction: string
+    idLoan: string
   ): Observable<any> {
+    const idConstruction = this.constructionService.getSelectConstruction?.id;
     return this.http.patch(
       `${environment.urlApi}/api/${idConstruction}/tool/loan/${idLoan}/return-tool`,
       body

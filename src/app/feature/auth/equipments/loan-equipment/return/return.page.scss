@@ -10,12 +10,14 @@
       height: 50px;
       margin-bottom: 10px;
       position: relative;
-      input {
+      input,button {
         padding-left: 15px;
         width: 70%;
         float: left;
         height: 100%;
+        background-color: transparent;
         border: 1px solid var(--secondary-color);
+        position: relative;
       }
       p {
         width: 30%;
@@ -34,6 +36,8 @@
       &__icon {
         position: absolute;
         right: 10px;
+        background-color: transparent;
+        border: none;
         bottom: 10px;
       }
     }

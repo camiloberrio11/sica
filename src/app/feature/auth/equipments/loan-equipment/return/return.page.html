@@ -5,22 +5,25 @@
     [listItems]="listItemsForm"
     (indexCurrent)="currentForm($event)"
   ></app-form-steps>
+
   <div class="return__form" *ngIf="indexCurrentForm === 0">
     <div class="return__form__boxinput">
       <p>Escanear</p>
-      <input type="text" placeholder="Seleccione Equipo" />
-      <img
-        class="return__form__boxinput__icon"
-        src="../../../../../../assets/img/barcode.png"
-        alt="barcode-icon"
-      />
+      <button (click)="scanCodeBar()">
+        <img
+          class="return__form__boxinput__icon"
+          src="assets/img/barcode.png"
+          alt="barcode-icon"
+        />
+      </button>
     </div>
     <div class="return__description">
       <p>Verificar datos del equipo</p>
-      <p>Boch</p>
-      <p>Taladro</p>
-      <p>DC345</p>
-      <p>Propio</p>
+      <p>{{tool?.trademark?.name}}</p>
+      <p>{{tool?.category?.name}}</p>
+      <p>{{tool?.reference}}</p>
+      <p>{{tool?.serial}}</p>
+      <p>{{tool?.isOwned ? 'Propio' : tool ? 'Alquilado' : ''}}</p>
       <button>OK</button>
     </div>
   </div>
@@ -28,39 +31,51 @@
   <!-- form 1 -->
   <div class="return__form" *ngIf="indexCurrentForm === 1">
     <div class="return__form__boxinput">
-      <p>Escanear</p>
-      <input type="text" placeholder="Seleccione Equipo" />
-      <img
-        class="return__form__boxinput__icon"
-        src="../../../../../../assets/img/barcode.png"
-        alt="barcode-icon"
-      />
+      <p>Entregado por</p>
+      <button (click)="activeNfc()">
+        {{deliveredBy}}
+        <img
+          class="return__form__boxinput__icon"
+          src="assets/img/nfc.svg"
+          alt="barcode-icon"
+        />
+      </button>
     </div>
     <div class="return__form__boxinput">
-      <p>Escanear</p>
-      <input type="text" placeholder="Seleccione Equipo" />
+      <p>Contratista</p>
+      <input type="text" placeholder="Seleccione contratista" />
     </div>
 
     <div class="return__form__fieldsnum">
       <div class="return__form__fieldsnum__field">
         <label>Cantidad</label>
-        <input type="text" />
+        <input type="text" [(ngModel)]="quantity" />
       </div>
     </div>
 
     <div class="return__form__boxcheck">
       <div class="return__form__boxcheck__check">
-        <input type="checkbox" id="check1" />
+        <input
+          type="checkbox"
+          id="check1"
+          [checked]="checked"
+          (change)="checked = !checked"
+        />
         <label for="check1">Bueno</label>
       </div>
       <div class="return__form__boxcheck__check">
-        <input type="checkbox" id="check2" />
+        <input
+          type="checkbox"
+          id="check2"
+          [checked]="!checked"
+          (change)="checked = !checked"
+        />
         <label for="check2">Malo</label>
       </div>
     </div>
 
     <div class="return__form__boxlineinput">
-      <input type="text" placeholder="Observaciones" />
+      <input type="text" placeholder="Observaciones" [(ngModel)]="remark" />
     </div>
   </div>
 
@@ -68,5 +83,4 @@
   <button class="return__btnform" *ngIf="indexCurrentForm === 1">
     Enviar Email
   </button>
-  {{indexCurrentForm}}
 </ion-content>
