@@ -60,7 +60,7 @@ export class RegisterPage implements OnInit {
     this.barcodeScanner
       .scan()
       .then((barcodeData: BarcodeScanResult) => {
-        this.registerForm.patchValue({ barcode: barcodeData?.text });
+        this.registerForm.patchValue({ codeBar: barcodeData?.text });
       })
       .catch((err) => {
         console.log('Error', err);
