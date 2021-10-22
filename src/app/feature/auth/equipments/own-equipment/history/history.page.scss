@@ -17,14 +17,23 @@
       width: 90%;
       height: 50px;
       margin-bottom: 10px;
-      input {
+      input, button {
         padding-left: 15px;
         width: 70%;
         float: left;
+        position: relative;
         height: 100%;
+        background-color: transparent;
         border: 1px solid var(--secondary-color);
-        font-size: 12px;
+        img {
+          position: absolute;
+          right: 10px;
+          background-color: transparent;
+          border: none;
+          bottom: 1.5px;
+        }
       }
+
       p {
         width: 30%;
         text-align: center;
@@ -44,7 +53,7 @@
     }
   }
 
-  button {
+  .button-act {
     width: 90%;
     display: flex;
     justify-content: center;

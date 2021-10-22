@@ -1,61 +1,77 @@
 <app-header [title]="'Hoja de vida'"></app-header>
 
 <ion-content [fullscreen]="true" class="history">
-
   <div class="history__content">
-    <img src="../../../../../../assets/img/planilla.png" alt="planilla-icon">
+    <img src="../../../../../../assets/img/planilla.png" alt="planilla-icon" />
   </div>
   <div class="history__fields">
     <div class="history__fields__boxinput">
       <p>Escanear</p>
-      <input type="text" placeholder="23324"/>
+      <button>
+        Escanear código
+        <img
+          class="ownequipment__register__content__barcode"
+          src="assets/img/barcode.png"
+          alt="barcode-icon"
+        />
+      </button>
+      <!-- <input type="text" placeholder="23324"/> -->
     </div>
     <div class="history__fields__boxinput">
       <p>Equipo</p>
-      <input type="text" placeholder="Taladro"/>
+      <input type="text" [value]="tool?.category?.name" readonly disabled />
     </div>
     <div class="history__fields__boxinput">
       <p>Marca</p>
-      <input type="text" placeholder="Boch"/>
+      <input type="text" [value]="tool?.brand?.name" readonly disabled />
     </div>
     <div class="history__fields__boxinput">
       <p>Referencia</p>
-      <input type="text" placeholder="A42C-213"/>
+      <input type="text" [value]="tool?.reference" readonly disabled />
     </div>
     <div class="history__fields__boxinput">
       <p>Serie</p>
-      <input type="text" placeholder="1223-232-233"/>
+      <input type="text" [value]="tool?.serial" readonly disabled />
     </div>
     <div class="history__fields__boxinput">
       <p>Fecha de compra</p>
-      <input type="text" placeholder="03-08-2018"/>
+      <input type="text" [value]="tool?.invoices[0]?.date" readonly disabled />
     </div>
     <div class="history__fields__boxinput">
       <p>Garantía</p>
-      <input type="text" placeholder="04-08-2019"/>
+      <input
+        type="text"
+        [value]="tool?.warrantyExpirationDate"
+        readonly
+        disabled
+      />
     </div>
     <div class="history__fields__boxinput">
       <p>Valor de compra</p>
-      <input type="text" placeholder="$ 123.000"/>
+      <input
+        type="text"
+        [value]="tool?.invoices[0]?.price"
+        readonly
+        disabled
+      />
     </div>
     <div class="history__fields__boxinput">
       <p>Valor de mantenimiento</p>
-      <input type="text" placeholder="$ 12.000"/>
+      <input type="text" value="0" />
     </div>
     <div class="history__fields__boxinput">
       <p>Valor de reparación</p>
-      <input type="text" placeholder="$ 2.000"/>
+      <input type="text" value="0" />
     </div>
     <div class="history__fields__boxinput">
       <p>Cantidad de servicios</p>
-      <input type="text" placeholder="3"/>
+      <input type="text" value="0" />
     </div>
     <div class="history__fields__boxinput">
       <p>Días en taller</p>
-      <input type="text" placeholder="13"/>
+      <input type="text" value="0" />
     </div>
   </div>
 
-  <button>Enviar Informe</button>
-
+  <button class="button-act">Enviar Informe</button>
 </ion-content>

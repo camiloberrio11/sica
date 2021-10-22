@@ -32,6 +32,7 @@ export interface ToolResponseService {
     id: string;
     type: string;
     date: string;
+    price: number;
     warranty: number;
     construction: Construction2;
     supplier: Construction2;
