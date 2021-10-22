@@ -9,16 +9,18 @@
       width: 30px;
       height: 20px;
       position: absolute;
-      top: 185px;
+      top: 180px;
       left: 35px;
     }
-    input {
+    button {
       width: 85%;
       border: none;
       border-bottom: 1px solid #bababa;
       margin: 0 auto;
       margin-top: 70px;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      background-color: transparent;
     }
 
     &__upload {

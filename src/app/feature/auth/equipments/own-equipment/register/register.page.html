@@ -9,16 +9,20 @@
   <!-- form 1 -->
   <form [formGroup]="registerForm">
     <div class="ownequipment__register__content" *ngIf="indexCurrentForm === 0">
-      <img
+
+      <button>
+        <img
         class="ownequipment__register__content__barcode"
         src="../../../../../../assets/img/barcode.png"
         alt="barcode-icon"
       />
-      <input
+      Escanear codigo de barras
+      </button>
+      <!-- <input
         placeholder="Escanear Código de Barras"
         type="text"
         formControlName="codeBar"
-      />
+      /> -->
 
       <div class="ownequipment__register__content__upload">
         <button (click)="capturePhotos()">
