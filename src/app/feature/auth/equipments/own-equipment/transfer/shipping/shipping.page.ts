@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Subscription } from 'rxjs';
 import { BarcodeScanResult } from 'src/app/core/models/BarcodeResult';
 import { Construction } from 'src/app/core/models/Construction';
 import { FormStep } from 'src/app/core/models/Formstep';
@@ -9,6 +10,7 @@ import { ToolResponseService } from 'src/app/core/models/Tool';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { SicaApiService } from 'src/app/core/services/sica-api.service';
 import { ToastService } from 'src/app/core/services/toast.service';
+import { NFC, Ndef } from '@ionic-native/nfc/ngx';
 
 @Component({
   selector: 'app-shipping',
@@ -16,6 +18,7 @@ import { ToastService } from 'src/app/core/services/toast.service';
   styleUrls: ['./shipping.page.scss'],
 })
 export class ShippingPage implements OnInit {
+  readerMode$: Subscription;
   listConstructions: Construction[] = [];
   listReason: Reason[] = [];
   shippingForm: FormGroup;
@@ -31,7 +34,9 @@ export class ShippingPage implements OnInit {
     private barcodeScanner: BarcodeScanner,
     private sicaApiService: SicaApiService,
     private loadingService: LoadingService,
-    private toastrService: ToastService
+    private toastrService: ToastService,
+    private nfc: NFC,
+    private ndef: Ndef
   ) {}
 
   ngOnInit() {
@@ -47,7 +52,6 @@ export class ShippingPage implements OnInit {
         if (barcodeData?.text) {
           this.getInfoByCodeBar(barcodeData.text);
         }
-        // this.registerForm.patchValue({ codeBar: barcodeData?.text });
       })
       .catch((err) => {
         console.log('Error', err);
@@ -63,6 +67,25 @@ export class ShippingPage implements OnInit {
       updateList.push({ title: element.title, status });
     }
     this.itemsForm = updateList;
+  }
+
+  activeNfc(): void {
+    this.readerMode$ = this.nfc
+      .addNdefListener(
+        () => {
+          console.log('successfully attached ndef listener');
+        },
+        (err) => {
+          console.log('error attaching ndef listener', err);
+        }
+      )
+      .subscribe((event) => {
+        const decode = this.nfc
+          .bytesToString(event.tag.ndefMessage[0].payload)
+          ?.split('en')
+          ?.pop();
+          this.updateNfcUser(decode);
+      });
   }
 
   handleNext() {
@@ -142,11 +165,19 @@ export class ShippingPage implements OnInit {
   private handleMove(): void {
     const values = this.shippingForm?.value;
     console.log(values);
-    this.itemsForm= [
+    this.itemsForm = [
       { title: 'Equipo', status: true },
       { title: 'Destino', status: false },
     ];
     this.indexCurrentForm = 0;
     this.labelBtn = 'Continuar';
+  }
+
+  private updateNfcUser(codeUser: string): void {
+    console.log(codeUser)
+    this.shippingForm.patchValue({
+      userNfc: codeUser
+    });
+    this.readerMode$?.unsubscribe();
   }
 }

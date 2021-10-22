@@ -84,12 +84,16 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        p {
-          text-align: center;
-          color: var(--quartary-color);
-          font-weight: bold;
-          font-size: 20px;
+        button {
+          background-color: transparent;
+          p {
+            text-align: center;
+            color: var(--quartary-color);
+            font-weight: bold;
+            font-size: 20px;
+          }
         }
+
       }
     }
   }
