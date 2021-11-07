@@ -87,44 +87,37 @@ export class ReturnPage implements OnInit {
   }
 
   handleNext() {
+    if (this.labelBtn === 'Entregar') {
+      this.handleReturn();
+      return;
+    }
+    this.indexCurrentForm = this.indexCurrentForm + 1;
     this.listItemsForm = this.listItemsForm.map((item) => {
-      if (
-        item?.title === this.listItemsForm[this.indexCurrentForm + 1]?.title
-      ) {
+      if (item?.title === this.listItemsForm[this.indexCurrentForm]?.title) {
         item.status = true;
       }
       return item;
     });
-    this.updateIndex();
-    const statusFinally = this.formFinally();
-    if (statusFinally) {
-      this.handleReturn();
-      return;
-    }
-    if (this.existNext) {
-      this.indexCurrentForm = this.indexCurrentForm - 1;
-      this.handleReturn();
-      return;
-    }
-    this.existNext =
+    const existNext =
       this.listItemsForm.filter((item) => item?.status === true)?.length ===
       this.listItemsForm.length;
-    if (this.existNext) {
+    if (existNext) {
       this.labelBtn = 'Entregar';
+      return;
     }
   }
 
-  private updateIndex(): void {
-    this.indexCurrentForm =
-      this.listItemsForm.filter((it) => it.status === true)?.length - 1;
-  }
+  // private updateIndex(): void {
+  //   this.indexCurrentForm =
+  //     this.listItemsForm.filter((it) => it.status === true)?.length - 1;
+  // }
 
-  private formFinally(): boolean {
-    const statusFinally =
-      this.indexCurrentForm ===
-      this.listItemsForm.filter((it) => it.status === true)?.length - 1;
-    return statusFinally;
-  }
+  // private formFinally(): boolean {
+  //   const statusFinally =
+  //     this.indexCurrentForm ===
+  //     this.listItemsForm.filter((it) => it.status === true)?.length - 1;
+  //   return statusFinally;
+  // }
 
   // private returnLoan(): void {
   //   const body: BodyUpdateLoan = {
@@ -175,7 +168,7 @@ export class ReturnPage implements OnInit {
         receivedBy: '616b873b08dbdcc901e43682',
         detail: {
           status: this?.checked ? 'bueno' : 'malo',
-          quantity: this.quantity,
+          quantity: +this.quantity,
         },
         remark: this.remark,
       },
